@@ -5,7 +5,6 @@
  * @author (your name here)
  * @version (version number or date here)
  */
-public enum Cells
-{
-    WALL, EMPTY, PLAYER
+public enum Cells {
+    WALL, EMPTY, PLAYER, EXIT
 }

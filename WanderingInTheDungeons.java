@@ -5,13 +5,13 @@
  * @author Ivan Kosov
  * @version 0.0.1
  */
-public class WanderingInTheDungeons
-{
+public class WanderingInTheDungeons {
     public static void main(String[] args) {
+        var levelController = new LevelController(new Player(), new Dungeon());
         var display = new Display();
-        var dungeon = new Dungeon();
         var input = new Input();
-        
-        display.display(dungeon.map, dungeon.player);
+
+        //display.display(levelController.dungeon.getMap(), levelController.player.getViewArea(),
+        //        levelController.player.getFogOfWarArea());
     }
 }
