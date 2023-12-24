@@ -10,7 +10,7 @@ public class Display {
 
     }
 
-    public void display(Cells[][] map, int viewArea, int fogOfWarArea) {
+    public void draw(Cells[][] map) {
         for (int row = 0; row < map.length; row++) {
             for (int col = 0; col < map[0].length; col++) {
                 switch (map[row][col]) {
