@@ -6,27 +6,27 @@
  * @version (a version number or a date)
  */
 public class Player {
-    private int viewArea;
-    private int fogOfWarArea;
+    private int viewRadius;
+    private int fogOfWarRadius;
 
     public Player() {
-        viewArea = 2;
-        fogOfWarArea = 4;
+        viewRadius = 2;
+        fogOfWarRadius = 1;
     }
 
-    public void setViewArea(int viewArea) {
-        this.viewArea = viewArea;
+    public void setViewRadius(int viewArea) {
+        this.viewRadius = viewArea;
     }
 
-    public int getViewArea() {
-        return viewArea;
+    public int getViewRadius() {
+        return viewRadius;
     }
 
-    public void setFogOfWarArea(int fogOfWarArea) {
-        this.fogOfWarArea = fogOfWarArea;
+    public void setFogOfWarRadius(int fogOfWarArea) {
+        this.fogOfWarRadius = fogOfWarArea;
     }
 
-    public int getFogOfWarArea() {
-        return fogOfWarArea;
+    public int getFogOfWarRadius() {
+        return fogOfWarRadius;
     }
 }

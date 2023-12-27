@@ -22,7 +22,81 @@ public class LevelController implements Input.InputEvents {
     }
 
     private void displayField() {
-        display.draw(dungeon.getMap());
+        var viewRadius = player.getViewRadius();
+        var fogOfWarRadius = player.getFogOfWarRadius();
+        Cells[][] visibleMap = new Cells[(fogOfWarRadius + viewRadius) * 2 + 1][(fogOfWarRadius + viewRadius) * 2 + 1];
+
+        int totalViewArea = viewRadius + fogOfWarRadius;
+        int leftCol = dungeon.getPlayerPos().col - totalViewArea;
+        int rightCol = dungeon.getPlayerPos().col + totalViewArea;
+        int topRow = dungeon.getPlayerPos().row - totalViewArea;
+        int bottomRow = dungeon.getPlayerPos().row + totalViewArea;
+        Pos visibleMapPlayerPos = new Pos(visibleMap.length - totalViewArea - 1,
+                visibleMap.length - totalViewArea - 1);
+
+        for (int row = topRow; row <= bottomRow; row++) {
+            for (int col = leftCol; col <= rightCol; col++) {
+                if (row < 0 || col < 0 || row >= dungeon.getHeight() || col >= dungeon.getWidth()) {
+                    visibleMap[row - topRow][col - leftCol] = Cells.UNDISCOVERED;
+                    continue;
+                }
+                visibleMap[row - topRow][col - leftCol] = dungeon.getCell(row, col);
+            }
+        }
+
+        for (int col = 0; col < visibleMap[0].length; col++) {
+            int firstRow = 0;
+            int lastRow = visibleMap.length - 1;
+
+            hideInvisibleCells(visibleMap, new Pos(firstRow, col), visibleMapPlayerPos);
+            hideInvisibleCells(visibleMap, new Pos(lastRow, col), visibleMapPlayerPos);
+        }
+
+        for (int row = 0; row < visibleMap.length; row++) {
+            int firstCol = 0;
+            int lastCol = visibleMap[0].length - 1;
+
+            hideInvisibleCells(visibleMap, new Pos(row, firstCol), visibleMapPlayerPos);
+            hideInvisibleCells(visibleMap, new Pos(row, lastCol), visibleMapPlayerPos);
+        }
+
+        display.draw(visibleMap);
+    }
+
+    private void hideInvisibleCells(Cells[][] visibleMap, Pos edgePos, Pos playerPos) {
+        int deltaCol = edgePos.col - playerPos.col;
+        int deltaRow = edgePos.row - playerPos.row;
+        int stepsAmount;
+
+        if (Math.abs(deltaCol) > Math.abs(deltaRow)) {
+            stepsAmount = Math.abs(deltaCol);
+        } else {
+            stepsAmount = Math.abs(deltaRow);
+        }
+
+        float colIncrement = deltaCol / (float) stepsAmount;
+        float rowIncrement = deltaRow / (float) stepsAmount;
+
+        boolean visible = true;
+        float col = playerPos.col;
+        float row = playerPos.row;
+        for (int i = 0; i < stepsAmount; i++) {
+            col += colIncrement;
+            row += rowIncrement;
+
+            int roundedCol = Math.round(col);
+            int roundedRow = Math.round(row);
+            var currentCell = visibleMap[roundedRow][roundedCol];
+            if (visible) {
+                if (currentCell == Cells.WALL) {
+                    visible = false;
+                }
+                continue;
+            }
+            if (currentCell != Cells.UNDISCOVERED && currentCell != Cells.WALL) {
+                visibleMap[roundedRow][roundedCol] = Cells.INVISIBLE;
+            }
+        }
     }
 
     public boolean canMovePlayer(Input.Keys key) {
@@ -45,7 +119,7 @@ public class LevelController implements Input.InputEvents {
                 break;
         }
 
-        if (dungeon.getMap()[row][col] == Cells.WALL) {
+        if (dungeon.getCell(row, col) == Cells.WALL) {
             return false;
         }
 

@@ -14,6 +14,12 @@ public class Display {
         for (int row = 0; row < map.length; row++) {
             for (int col = 0; col < map[0].length; col++) {
                 switch (map[row][col]) {
+                    case UNDISCOVERED:
+                        System.out.print(". ");
+                        break;
+                    case INVISIBLE:
+                        System.out.print("? ");
+                        break;
                     case WALL:
                         System.out.print("# ");
                         break;

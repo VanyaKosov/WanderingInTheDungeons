@@ -43,6 +43,7 @@ public class Dungeon {
         }
     }
 
+    // TODO: remove player from dungeon
     public void movePlayer(Input.Keys direction) {
         int row = playerPos.row;
         int col = playerPos.col;
@@ -69,15 +70,19 @@ public class Dungeon {
         map[playerPos.row][playerPos.col] = Cells.PLAYER;
     }
 
-    public Cells[][] getMap() {
-        return map;
+    public Cells getCell(int row, int col) {
+        return map[row][col];
+    }
+
+    public int getWidth() {
+        return map[0].length;
+    }
+
+    public int getHeight() {
+        return map.length;
     }
 
     public Pos getPlayerPos() {
         return playerPos;
-    }
-
-    public void setPlayerPos(Pos playerPos) {
-        this.playerPos = playerPos;
     }
 }
