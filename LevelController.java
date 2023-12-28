@@ -40,7 +40,13 @@ public class LevelController implements Input.InputEvents {
                     visibleMap[row - topRow][col - leftCol] = Cells.UNDISCOVERED;
                     continue;
                 }
+
                 visibleMap[row - topRow][col - leftCol] = dungeon.getCell(row, col);
+
+                if (row >= topRow + fogOfWarRadius && row <= bottomRow - fogOfWarRadius
+                        && col >= leftCol + fogOfWarRadius && col <= rightCol - fogOfWarRadius) {
+                    dungeon.setVisitedCell(row, col);
+                }
             }
         }
 
@@ -58,6 +64,18 @@ public class LevelController implements Input.InputEvents {
 
             hideInvisibleCells(visibleMap, new Pos(row, firstCol), visibleMapPlayerPos);
             hideInvisibleCells(visibleMap, new Pos(row, lastCol), visibleMapPlayerPos);
+        }
+
+        for (int row = 0; row < visibleMap.length; row++) {
+            for (int col = 0; col < visibleMap[0].length; col++) {
+                if (topRow + row < 0 || leftCol + col < 0 || topRow + row >= dungeon.getHeight()
+                        || leftCol + col >= dungeon.getWidth()) {
+                    continue;
+                }
+                if (!dungeon.getVisitedCell(topRow + row, leftCol + col)) {
+                    visibleMap[row][col] = Cells.UNDISCOVERED;
+                }
+            }
         }
 
         display.draw(visibleMap);
@@ -80,6 +98,7 @@ public class LevelController implements Input.InputEvents {
         boolean visible = true;
         float col = playerPos.col;
         float row = playerPos.row;
+        //Pos previousCell = new Pos(playerPos.row, playerPos.col);
         for (int i = 0; i < stepsAmount; i++) {
             col += colIncrement;
             row += rowIncrement;
@@ -91,6 +110,15 @@ public class LevelController implements Input.InputEvents {
                 if (currentCell == Cells.WALL) {
                     visible = false;
                 }
+
+                /*for (int tempRow = previousCell.row - 1; tempRow <= previousCell.row + 1; tempRow++) {
+                    for (int tempCol = previousCell.col - 1; tempCol <= previousCell.col + 1; tempCol++) {
+                
+                    }
+                }
+                
+                previousCell.row = roundedRow;
+                previousCell.col = roundedCol;*/
                 continue;
             }
             if (currentCell != Cells.UNDISCOVERED && currentCell != Cells.WALL) {

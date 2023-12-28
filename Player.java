@@ -11,7 +11,7 @@ public class Player {
 
     public Player() {
         viewRadius = 2;
-        fogOfWarRadius = 1;
+        fogOfWarRadius = 3;
     }
 
     public void setViewRadius(int viewArea) {

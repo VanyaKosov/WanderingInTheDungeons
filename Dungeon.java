@@ -16,10 +16,17 @@ public class Dungeon {
             "############"
     };
     private Cells[][] map;
+    private boolean[][] visitedCells;
     private Pos playerPos;
 
     public Dungeon() {
         map = new Cells[testInputMap.length][testInputMap[0].length()];
+        visitedCells = new boolean[map.length][map[0].length];
+        for (int row = 0; row < visitedCells.length; row++) {
+            for (int col = 0; col < visitedCells[0].length; col++) {
+                visitedCells[row][col] = false;
+            }
+        }
 
         for (int row = 0; row < testInputMap.length; row++) {
             for (int col = 0; col < testInputMap[0].length(); col++) {
@@ -72,6 +79,14 @@ public class Dungeon {
 
     public Cells getCell(int row, int col) {
         return map[row][col];
+    }
+
+    public boolean getVisitedCell(int row, int col) {
+        return visitedCells[row][col];
+    }
+
+    public void setVisitedCell(int row, int col) {
+        visitedCells[row][col] = true;
     }
 
     public int getWidth() {
