@@ -55,16 +55,16 @@ public class LevelController implements Input.InputEvents {
             int firstRow = 0;
             int lastRow = visibleMap.length - 1;
 
-            hideInvisibleCells(visibleMap, new Pos(firstRow, col), visibleMapPlayerPos, topRow, leftCol);
-            hideInvisibleCells(visibleMap, new Pos(lastRow, col), visibleMapPlayerPos, topRow, leftCol);
+            hideInvisibleCells(visibleMap, new Pos(firstRow, col), visibleMapPlayerPos);
+            hideInvisibleCells(visibleMap, new Pos(lastRow, col), visibleMapPlayerPos);
         }
 
         for (int row = 0; row < visibleMap.length; row++) {
             int firstCol = 0;
             int lastCol = visibleMap[0].length - 1;
 
-            hideInvisibleCells(visibleMap, new Pos(row, firstCol), visibleMapPlayerPos, topRow, leftCol);
-            hideInvisibleCells(visibleMap, new Pos(row, lastCol), visibleMapPlayerPos, topRow, leftCol);
+            hideInvisibleCells(visibleMap, new Pos(row, firstCol), visibleMapPlayerPos);
+            hideInvisibleCells(visibleMap, new Pos(row, lastCol), visibleMapPlayerPos);
         }
 
         for (int row = 0; row < visibleMap.length; row++) {
@@ -82,7 +82,7 @@ public class LevelController implements Input.InputEvents {
         display.draw(visibleMap);
     }
 
-    private void hideInvisibleCells(Cells[][] visibleMap, Pos edgePos, Pos playerPos, int topRow, int leftCol) {
+    private void hideInvisibleCells(Cells[][] visibleMap, Pos edgePos, Pos playerPos) {
         int deltaCol = edgePos.col - playerPos.col;
         int deltaRow = edgePos.row - playerPos.row;
         int stepsAmount;
@@ -111,6 +111,11 @@ public class LevelController implements Input.InputEvents {
                 if (currentCell == Cells.WALL) {
                     visible = false;
                 }
+                int viewRadius = player.getViewRadius();
+                if (roundedRow < playerPos.row - viewRadius + 1 || roundedCol < playerPos.col - viewRadius + 1
+                        || roundedRow > playerPos.row + viewRadius - 1 || roundedCol > playerPos.col + viewRadius - 1) {
+                    visible = false;
+                }
 
                 if (offset.row + roundedRow < 0 || offset.col + roundedCol < 0
                         || offset.row + roundedRow >= dungeon.getHeight()
@@ -121,6 +126,7 @@ public class LevelController implements Input.InputEvents {
 
                 continue;
             }
+
             if (currentCell != Cells.UNDISCOVERED && currentCell != Cells.WALL) {
                 visibleMap[roundedRow][roundedCol] = Cells.INVISIBLE;
             }
