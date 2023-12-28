@@ -6,21 +6,12 @@
  * @version (a version number or a date)
  */
 public class Dungeon {
-    private String[] testInputMap = {
-            "############",
-            "#         ##",
-            "##### # #  F",
-            "#   # # ####",
-            "# # ###   ##",
-            "#S#     #  #",
-            "############"
-    };
     private Cells[][] map;
     private boolean[][] visitedCells;
     private Pos playerPos;
 
-    public Dungeon() {
-        map = new Cells[testInputMap.length][testInputMap[0].length()];
+    public Dungeon(String[] inputMap) {
+        map = new Cells[inputMap.length][inputMap[0].length()];
         visitedCells = new boolean[map.length][map[0].length];
         for (int row = 0; row < visitedCells.length; row++) {
             for (int col = 0; col < visitedCells[0].length; col++) {
@@ -28,9 +19,9 @@ public class Dungeon {
             }
         }
 
-        for (int row = 0; row < testInputMap.length; row++) {
-            for (int col = 0; col < testInputMap[0].length(); col++) {
-                char currentCell = testInputMap[row].charAt(col);
+        for (int row = 0; row < inputMap.length; row++) {
+            for (int col = 0; col < inputMap[0].length(); col++) {
+                char currentCell = inputMap[row].charAt(col);
                 switch (currentCell) {
                     case '#':
                         map[row][col] = Cells.WALL;
