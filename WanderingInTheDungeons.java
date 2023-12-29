@@ -26,7 +26,8 @@ public class WanderingInTheDungeons {
             inputMap[i] = arrayListInputMap.get(i);
         }
 
-        var levelController = new LevelController(new Player(), new Dungeon(inputMap), new Display());
+        var dungeon = new Dungeon(inputMap);
+        var levelController = new LevelController(new Player(dungeon, 2, 3), dungeon, new Display());
         var input = new Input(levelController);
 
         input.run();

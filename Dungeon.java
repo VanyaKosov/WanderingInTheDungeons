@@ -36,36 +36,12 @@ public class Dungeon {
                     case 'F':
                         map[row][col] = Cells.EXIT;
                         break;
+                    case 'i':
+                        map[row][col] = Cells.CANDLE;
+                        break;
                 }
             }
         }
-    }
-
-    // TODO: remove player from dungeon
-    public void movePlayer(Input.Keys direction) {
-        int row = playerPos.row;
-        int col = playerPos.col;
-        switch (direction) {
-            case UP:
-                row--;
-                break;
-            case DOWN:
-                row++;
-                break;
-            case LEFT:
-                col--;
-                break;
-            case RIGHT:
-                col++;
-                break;
-            default:
-                break;
-        }
-
-        map[playerPos.row][playerPos.col] = Cells.EMPTY;
-        playerPos.row = row;
-        playerPos.col = col;
-        map[playerPos.row][playerPos.col] = Cells.PLAYER;
     }
 
     public Cells getCell(int row, int col) {
@@ -90,5 +66,12 @@ public class Dungeon {
 
     public Pos getPlayerPos() {
         return playerPos;
+    }
+
+    public void movePlayerPos(int row, int col) {
+        map[playerPos.row][playerPos.col] = Cells.EMPTY;
+        playerPos.row = row;
+        playerPos.col = col;
+        map[playerPos.row][playerPos.col] = Cells.PLAYER;
     }
 }

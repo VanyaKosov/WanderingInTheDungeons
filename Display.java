@@ -32,6 +32,11 @@ public class Display {
                     case EXIT:
                         System.out.print("O ");
                         break;
+                    case CANDLE:
+                        System.out.print("i ");
+                        break;
+                    default:
+                        throw new IllegalStateException();
                 }
             }
             System.out.println();

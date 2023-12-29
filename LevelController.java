@@ -13,11 +13,8 @@ public class LevelController implements Input.InputEvents {
 
     @Override
     public void onKeyPress(Input.Keys key) {
-        if (!canMovePlayer(key)) {
-            return;
-        }
+        player.movePlayer(key);
 
-        dungeon.movePlayer(key);
         displayField();
     }
 
@@ -27,10 +24,10 @@ public class LevelController implements Input.InputEvents {
         Cells[][] visibleMap = new Cells[(fogOfWarRadius + viewRadius) * 2 + 1][(fogOfWarRadius + viewRadius) * 2 + 1];
 
         int totalViewArea = viewRadius + fogOfWarRadius;
-        int leftCol = dungeon.getPlayerPos().col - totalViewArea;
-        int rightCol = dungeon.getPlayerPos().col + totalViewArea;
-        int topRow = dungeon.getPlayerPos().row - totalViewArea;
-        int bottomRow = dungeon.getPlayerPos().row + totalViewArea;
+        int leftCol = player.getPos().col - totalViewArea;
+        int rightCol = player.getPos().col + totalViewArea;
+        int topRow = player.getPos().row - totalViewArea;
+        int bottomRow = player.getPos().row + totalViewArea;
         Pos visibleMapPlayerPos = new Pos(visibleMap.length - totalViewArea - 1,
                 visibleMap.length - totalViewArea - 1);
 
@@ -43,11 +40,7 @@ public class LevelController implements Input.InputEvents {
 
                 visibleMap[row - topRow][col - leftCol] = dungeon.getCell(row, col);
 
-                dungeon.setVisitedCell(dungeon.getPlayerPos().row, dungeon.getPlayerPos().col);
-                /*if (row >= topRow + fogOfWarRadius && row <= bottomRow - fogOfWarRadius
-                        && col >= leftCol + fogOfWarRadius && col <= rightCol - fogOfWarRadius) {
-                    dungeon.setVisitedCell(row, col);
-                }*/
+                dungeon.setVisitedCell(player.getPos().row, player.getPos().col);
             }
         }
 
@@ -99,7 +92,7 @@ public class LevelController implements Input.InputEvents {
         boolean visible = true;
         float col = playerPos.col;
         float row = playerPos.row;
-        Pos offset = dungeon.getPlayerPos().sub(playerPos);
+        Pos offset = player.getPos().sub(playerPos);
         for (int i = 0; i < stepsAmount; i++) {
             col += colIncrement;
             row += rowIncrement;
@@ -132,32 +125,4 @@ public class LevelController implements Input.InputEvents {
             }
         }
     }
-
-    public boolean canMovePlayer(Input.Keys key) {
-        int row = dungeon.getPlayerPos().row;
-        int col = dungeon.getPlayerPos().col;
-        switch (key) {
-            case UP:
-                row--;
-                break;
-            case DOWN:
-                row++;
-                break;
-            case LEFT:
-                col--;
-                break;
-            case RIGHT:
-                col++;
-                break;
-            default:
-                break;
-        }
-
-        if (dungeon.getCell(row, col) == Cells.WALL) {
-            return false;
-        }
-
-        return true;
-    }
-
 }
