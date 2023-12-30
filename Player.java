@@ -1,15 +1,16 @@
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Write a description of class Player here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Ivan Kosov
+ * @version 0.0.1
  */
 public class Player {
     private final Dungeon dungeon;
     private final Pos pos = new Pos();
     private final ArrayList<Item> inventory = new ArrayList<>();
+    private final HashMap<Cells, Item> stuff = new HashMap<>();
     private int viewRadius;
     private int fogOfWarRadius;
 
@@ -19,10 +20,9 @@ public class Player {
         pos.row = dungeon.getStartPlayerPos().row;
         pos.col = dungeon.getStartPlayerPos().col;
 
-        var startingCandle = new Candle();
-        inventory.add(startingCandle);
-        viewRadius += startingCandle.viewRadiusIncrease;
-        fogOfWarRadius += startingCandle.viewRadiusIncrease;
+        stuff.put(Cells.CANDLE, new Candle());
+
+        addItem(new Candle());
     }
 
     public void movePlayer(Input.Keys direction) {
@@ -51,7 +51,8 @@ public class Player {
 
         pos.row = row;
         pos.col = col;
-        //dungeon.movePlayerPos(row, col);
+
+        checkForItem();
     }
 
     public boolean canMovePlayer(Input.Keys key) {
@@ -79,6 +80,24 @@ public class Player {
         }
 
         return true;
+    }
+
+    private void checkForItem() {
+        var item = stuff.get(dungeon.getCell(pos.row, pos.col));
+        if (item == null) {
+            return;
+        }
+        dungeon.setCell(Cells.EMPTY, pos.row, pos.col);
+
+        addItem(item);
+    }
+
+    private void addItem(Item item) {
+        inventory.add(item);
+        if (item instanceof LightItem lightItem) {
+            viewRadius += lightItem.viewRadiusIncrease;
+            fogOfWarRadius += lightItem.fogOfWarRadiusIncrease;
+        }
     }
 
     public Pos getPos() {

@@ -2,8 +2,8 @@
 /**
  * Write a description of class Display here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Ivan Kosov
+ * @version 0.0.1
  */
 public class Display {
     public Display() {

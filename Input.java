@@ -3,8 +3,8 @@ import java.util.*;
 /**
  * Write a description of class Input here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Ivan Kosov
+ * @version 0.0.1
  */
 public class Input {
     private final InputEvents inputHandler;

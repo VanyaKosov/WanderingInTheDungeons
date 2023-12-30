@@ -2,8 +2,8 @@
 /**
  * Write a description of class Dungeon here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Ivan Kosov
+ * @version 0.0.1
  */
 public class Dungeon {
     private final Cells[][] map;
@@ -31,7 +31,6 @@ public class Dungeon {
                         map[row][col] = Cells.EMPTY;
                         break;
                     case 'S':
-                        //map[row][col] = Cells.PLAYER;
                         map[row][col] = Cells.EMPTY;
                         if (playerPos != null) {
                             throw new IllegalStateException();
@@ -60,6 +59,10 @@ public class Dungeon {
         return map[row][col];
     }
 
+    public void setCell(Cells cell, int row, int col) {
+        map[row][col] = cell;
+    }
+
     public boolean getVisitedCell(int row, int col) {
         return visitedCells[row][col];
     }
@@ -79,11 +82,4 @@ public class Dungeon {
     public Pos getStartPlayerPos() {
         return startPlayerPos;
     }
-
-    // public void movePlayerPos(int row, int col) {
-    //     map[playerPos.row][playerPos.col] = Cells.EMPTY;
-    //     playerPos.row = row;
-    //     playerPos.col = col;
-    //     map[playerPos.row][playerPos.col] = Cells.PLAYER;
-    // }
 }

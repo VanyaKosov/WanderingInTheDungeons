@@ -28,8 +28,6 @@ public class LevelController implements Input.InputEvents {
         int rightCol = player.getPos().col + totalViewArea;
         int topRow = player.getPos().row - totalViewArea;
         int bottomRow = player.getPos().row + totalViewArea;
-        /*Pos visibleMapPlayerPos = new Pos(visibleMap.length - totalViewArea - 1,
-                visibleMap.length - totalViewArea - 1);*/
         Pos visibleMapPlayerPos = new Pos(visibleMap.length / 2, visibleMap.length / 2);
 
         for (int row = topRow; row <= bottomRow; row++) {
