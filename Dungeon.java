@@ -6,9 +6,9 @@
  * @version (a version number or a date)
  */
 public class Dungeon {
-    private Cells[][] map;
-    private boolean[][] visitedCells;
-    private Pos playerPos;
+    private final Cells[][] map;
+    private final boolean[][] visitedCells;
+    private final Pos startPlayerPos;
 
     public Dungeon(String[] inputMap) {
         map = new Cells[inputMap.length][inputMap[0].length()];
@@ -19,6 +19,7 @@ public class Dungeon {
             }
         }
 
+        Pos playerPos = null;
         for (int row = 0; row < inputMap.length; row++) {
             for (int col = 0; col < inputMap[0].length(); col++) {
                 char currentCell = inputMap[row].charAt(col);
@@ -30,7 +31,11 @@ public class Dungeon {
                         map[row][col] = Cells.EMPTY;
                         break;
                     case 'S':
-                        map[row][col] = Cells.PLAYER;
+                        //map[row][col] = Cells.PLAYER;
+                        map[row][col] = Cells.EMPTY;
+                        if (playerPos != null) {
+                            throw new IllegalStateException();
+                        }
                         playerPos = new Pos(row, col);
                         break;
                     case 'F':
@@ -39,9 +44,16 @@ public class Dungeon {
                     case 'i':
                         map[row][col] = Cells.CANDLE;
                         break;
+                    default:
+                        throw new IllegalStateException();
                 }
             }
         }
+
+        if (playerPos == null) {
+            throw new IllegalStateException();
+        }
+        startPlayerPos = playerPos;
     }
 
     public Cells getCell(int row, int col) {
@@ -64,14 +76,14 @@ public class Dungeon {
         return map.length;
     }
 
-    public Pos getPlayerPos() {
-        return playerPos;
+    public Pos getStartPlayerPos() {
+        return startPlayerPos;
     }
 
-    public void movePlayerPos(int row, int col) {
-        map[playerPos.row][playerPos.col] = Cells.EMPTY;
-        playerPos.row = row;
-        playerPos.col = col;
-        map[playerPos.row][playerPos.col] = Cells.PLAYER;
-    }
+    // public void movePlayerPos(int row, int col) {
+    //     map[playerPos.row][playerPos.col] = Cells.EMPTY;
+    //     playerPos.row = row;
+    //     playerPos.col = col;
+    //     map[playerPos.row][playerPos.col] = Cells.PLAYER;
+    // }
 }

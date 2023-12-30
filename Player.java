@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 /**
  * Write a description of class Player here.
@@ -6,18 +7,22 @@
  * @version (a version number or a date)
  */
 public class Player {
-    private Dungeon dungeon;
-    private Pos pos = new Pos();
+    private final Dungeon dungeon;
+    private final Pos pos = new Pos();
+    private final ArrayList<Item> inventory = new ArrayList<>();
     private int viewRadius;
     private int fogOfWarRadius;
 
-    public Player(Dungeon dungeon, int viewRadius, int fogOfWarRadius) {
+    public Player(Dungeon dungeon) {
         this.dungeon = dungeon;
-        this.viewRadius = viewRadius;
-        this.fogOfWarRadius = fogOfWarRadius;
 
-        pos.row = dungeon.getPlayerPos().row;
-        pos.col = dungeon.getPlayerPos().col;
+        pos.row = dungeon.getStartPlayerPos().row;
+        pos.col = dungeon.getStartPlayerPos().col;
+
+        var startingCandle = new Candle();
+        inventory.add(startingCandle);
+        viewRadius += startingCandle.viewRadiusIncrease;
+        fogOfWarRadius += startingCandle.viewRadiusIncrease;
     }
 
     public void movePlayer(Input.Keys direction) {
@@ -46,7 +51,7 @@ public class Player {
 
         pos.row = row;
         pos.col = col;
-        dungeon.movePlayerPos(row, col);
+        //dungeon.movePlayerPos(row, col);
     }
 
     public boolean canMovePlayer(Input.Keys key) {
