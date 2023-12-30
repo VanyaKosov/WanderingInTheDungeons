@@ -20,7 +20,7 @@ public class WanderingInTheDungeons {
                 "#S#     #  #",
                 "############"
         };*/
-        var arrayListInputMap = readInputMap("dungeonMap.txt");
+        var arrayListInputMap = readInputMap("dungeons\\dungeon map medium.txt");
         var inputMap = new String[arrayListInputMap.size()];
         for (int i = 0; i < arrayListInputMap.size(); i++) {
             inputMap[i] = arrayListInputMap.get(i);
