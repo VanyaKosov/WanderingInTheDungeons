@@ -1,3 +1,5 @@
+import java.io.Closeable;
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -6,7 +8,9 @@ import java.util.*;
  * @author Ivan Kosov
  * @version 0.0.1
  */
-public class Input {
+public class Input implements Closeable {
+    private static final Scanner wordScanner = new Scanner(System.in);
+    private static final Scanner numberScanner = new Scanner(System.in);
     private static final HashMap<Character, Keys> keyMapping = new HashMap<Character, Keys>() {
         {
             put('w', Keys.UP);
@@ -20,8 +24,8 @@ public class Input {
         var allKeys = new ArrayList<Keys>();
 
         //try (var scanner = new Scanner(System.in)) {
-        var scanner = new Scanner(System.in);
-        var input = scanner.nextLine();
+        //var scanner = new Scanner(System.in);
+        var input = wordScanner.nextLine();
 
         for (int i = 0; i < input.length(); i++) {
             var letter = Character.toLowerCase(input.charAt(i));
@@ -37,11 +41,11 @@ public class Input {
 
     public int readNumber(int min, int max) {
         //try (var scanner = new Scanner(System.in)) {
-        var scanner = new Scanner(System.in);
+        //var scanner = new Scanner(System.in);
         while (true) {
             int number;
             try {
-                number = scanner.nextInt();
+                number = numberScanner.nextInt();
             } catch (InputMismatchException e) {
                 continue;
             }
@@ -81,5 +85,11 @@ public class Input {
 
     public enum Keys {
         UP, DOWN, LEFT, RIGHT
+    }
+
+    @Override
+    public void close() throws IOException {
+        wordScanner.close();
+        numberScanner.close();
     }
 }

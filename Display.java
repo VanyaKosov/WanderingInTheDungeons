@@ -10,6 +10,10 @@ public class Display {
 
     }
 
+    public void drawVictory() {
+        System.out.println("You escaped!");
+    }
+
     public void draw(Cells[][] map) {
         for (int row = 0; row < map.length; row++) {
             for (int col = 0; col < map[0].length; col++) {

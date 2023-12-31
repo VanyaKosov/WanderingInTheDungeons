@@ -11,25 +11,18 @@ import java.util.List;
  */
 public class WanderingInTheDungeons {
     public static void main(String[] args) throws IOException {
-        /*String[] testInputMap = {
-                "############",
-                "#         ##",
-                "##### # #  F",
-                "#   # # ####",
-                "# # ###   ##",
-                "#S#     #  #",
-                "############"
-        };*/
-        var arrayListInputMap = readInputMap("dungeons\\dungeon map medium.txt");
+        var arrayListInputMap = readInputMap("dungeons\\test dungeon.dungeon");
         var inputMap = new String[arrayListInputMap.size()];
         for (int i = 0; i < arrayListInputMap.size(); i++) {
             inputMap[i] = arrayListInputMap.get(i);
         }
 
-        var dungeon = new Dungeon(inputMap);
-        var levelController = new LevelController(new Input(), new Player(dungeon), dungeon, new Display());
+        try (var input = new Input()) {
+            var dungeon = new Dungeon(inputMap);
+            var levelController = new LevelController(input, new Player(dungeon), dungeon, new Display());
 
-        levelController.run();
+            levelController.run();
+        }
     }
 
     private static List<String> readInputMap(String filename) throws IOException {

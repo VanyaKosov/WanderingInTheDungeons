@@ -14,15 +14,24 @@ public class LevelController {
     }
 
     public void run() {
-        while (true) {
+        while (!checkForVictory()) {
             var allKeys = input.readKey();
 
             for (Input.Keys key : allKeys) {
                 player.movePlayer(key);
-
                 displayField();
             }
         }
+    }
+
+    private boolean checkForVictory() {
+        var playerPos = player.getPos();
+        if (dungeon.getCell(playerPos.row, playerPos.col) == Cells.EXIT) {
+            display.drawVictory();
+            return true;
+        }
+
+        return false;
     }
 
     private void displayField() {
