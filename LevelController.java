@@ -1,9 +1,11 @@
-public class LevelController implements Input.InputEvents {
+public class LevelController {
+    public final Input input;
     public final Player player;
     public final Dungeon dungeon;
     public final Display display;
 
-    public LevelController(Player player, Dungeon dungeon, Display display) {
+    public LevelController(Input input, Player player, Dungeon dungeon, Display display) {
+        this.input = input;
         this.player = player;
         this.dungeon = dungeon;
         this.display = display;
@@ -11,11 +13,16 @@ public class LevelController implements Input.InputEvents {
         displayField();
     }
 
-    @Override
-    public void onKeyPress(Input.Keys key) {
-        player.movePlayer(key);
+    public void run() {
+        while (true) {
+            var allKeys = input.readKey();
 
-        displayField();
+            for (Input.Keys key : allKeys) {
+                player.movePlayer(key);
+
+                displayField();
+            }
+        }
     }
 
     private void displayField() {

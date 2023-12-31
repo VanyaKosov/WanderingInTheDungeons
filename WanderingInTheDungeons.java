@@ -27,10 +27,9 @@ public class WanderingInTheDungeons {
         }
 
         var dungeon = new Dungeon(inputMap);
-        var levelController = new LevelController(new Player(dungeon), dungeon, new Display());
-        var input = new Input(levelController);
+        var levelController = new LevelController(new Input(), new Player(dungeon), dungeon, new Display());
 
-        input.run();
+        levelController.run();
     }
 
     private static List<String> readInputMap(String filename) throws IOException {
