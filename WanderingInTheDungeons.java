@@ -12,24 +12,25 @@ public class WanderingInTheDungeons {
     public static void main(String[] args) throws IOException {
 
         try (var input = new Input()) {
-            var display = new Display();
-            var mainMenuController = new MainMenuController();
-            Path mapPath = mainMenuController.showMainMenu(input, display);
-            if (mapPath == null) {
-                return;
-            }
+            while (true) {
+                var display = new Display();
+                var mainMenuController = new MainMenuController();
+                Path mapPath = mainMenuController.showMainMenu(input, display);
+                if (mapPath == null) {
+                    return;
+                }
 
-            var arrayListInputMap = readInputMap(mapPath);
-            var inputMap = new String[arrayListInputMap.size()];
-            for (int i = 0; i < arrayListInputMap.size(); i++) {
-                inputMap[i] = arrayListInputMap.get(i);
-            }
+                var arrayListInputMap = readInputMap(mapPath);
+                var inputMap = new String[arrayListInputMap.size()];
+                for (int i = 0; i < arrayListInputMap.size(); i++) {
+                    inputMap[i] = arrayListInputMap.get(i);
+                }
 
-            var dungeon = new Dungeon(inputMap);
-            var levelController = new LevelController(input, new Player(dungeon), dungeon, display);
-            levelController.run();
+                var dungeon = new Dungeon(inputMap);
+                var levelController = new LevelController(input, new Player(dungeon), dungeon, display);
+                levelController.run();
+            }
         }
-
     }
 
     private static List<String> readInputMap(Path mapPath) throws IOException {

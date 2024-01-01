@@ -17,9 +17,19 @@ public class LevelController {
         while (!checkForVictory()) {
             var allKeys = input.readKey();
 
+            boolean toExit = false;
             for (Input.Keys key : allKeys) {
+                if (key == Input.Keys.MENU) {
+                    toExit = true;
+                    break;
+                }
+
                 player.movePlayer(key);
                 displayField();
+            }
+
+            if (toExit) {
+                break;
             }
         }
     }
