@@ -1,3 +1,5 @@
+import java.nio.file.*;
+import java.util.*;
 
 /**
  * Write a description of class Display here.
@@ -12,6 +14,18 @@ public class Display {
 
     public void drawVictory() {
         System.out.println("You escaped!");
+    }
+
+    public void drawMainMenu(ArrayList<Path> paths, String extension) {
+        int counter = 1;
+        System.out.println("Please type:");
+        System.out.println("0: To exit the program");
+        for (Path path : paths) {
+            String name = path.toFile().getName();
+            System.out.print(counter + ": To open ");
+            System.out.println(name.substring(0, name.length() - extension.length()));
+            counter++;
+        }
     }
 
     public void draw(Cells[][] map) {

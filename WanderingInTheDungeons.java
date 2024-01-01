@@ -12,8 +12,9 @@ public class WanderingInTheDungeons {
     public static void main(String[] args) throws IOException {
 
         try (var input = new Input()) {
+            var display = new Display();
             var mainMenuController = new MainMenuController();
-            Path mapPath = mainMenuController.showMainMenu(input);
+            Path mapPath = mainMenuController.showMainMenu(input, display);
             if (mapPath == null) {
                 return;
             }
@@ -25,7 +26,7 @@ public class WanderingInTheDungeons {
             }
 
             var dungeon = new Dungeon(inputMap);
-            var levelController = new LevelController(input, new Player(dungeon), dungeon, new Display());
+            var levelController = new LevelController(input, new Player(dungeon), dungeon, display);
             levelController.run();
         }
 
