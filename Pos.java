@@ -18,4 +18,13 @@ public class Pos {
     public Pos add(Pos p) {
         return new Pos(row + p.row, col + p.col);
     }
+
+    public int manhattanDistance(Pos p) {
+        return Math.abs(p.row - row) + Math.abs(p.col - col);
+    }
+
+    @Override
+    public String toString() {
+        return "{" + row + ", " + col + "}";
+    }
 }
