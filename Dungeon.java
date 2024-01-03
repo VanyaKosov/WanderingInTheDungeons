@@ -59,17 +59,33 @@ public class Dungeon {
         startPlayerPos = playerPos;
     }
 
+    public ArrayList<Pos> findAccessibleCells(Pos startingPos) {
+        var visitedCells = new boolean[map.length][map[0].length];
+        var accessibleCells = new ArrayList<Pos>();
+        findConnectedCells(startingPos, visitedCells, accessibleCells);
+
+        return accessibleCells;
+    }
+
+    private void findConnectedCells(Pos startingPos, boolean[][] visitedCells, ArrayList<Pos> accessibleCells) {
+        Pos[] cellsAround = getCellsAround(startingPos);
+        for (Pos pos : cellsAround) {
+            if (map[pos.row][pos.col] == Cells.WALL || map[pos.row][pos.col] == Cells.DOOR
+                    || visitedCells[pos.row][pos.col]) {
+                continue;
+            }
+            visitedCells[pos.row][pos.col] = true;
+            findConnectedCells(pos, visitedCells, accessibleCells);
+            accessibleCells.add(pos);
+        }
+    }
+
     public ArrayList<Pos> findPath(Pos start, Pos finish) {
         var shortestPath = new ArrayList<Pos>();
         var field = getDistanceField(start, finish);
         Pos currentCell = new Pos(finish.row, finish.col);
         for (int i = field[finish.row][finish.col]; i >= 0; i--) {
-            Pos[] cellsAround = {
-                    new Pos(currentCell.row - 1, currentCell.col),
-                    new Pos(currentCell.row + 1, currentCell.col),
-                    new Pos(currentCell.row, currentCell.col - 1),
-                    new Pos(currentCell.row, currentCell.col + 1),
-            };
+            Pos[] cellsAround = getCellsAround(currentCell);
 
             for (Pos pos : cellsAround) {
 
@@ -87,17 +103,19 @@ public class Dungeon {
         }
         shortestPath.add(0, new Pos(start.row, start.col));
 
-        /*for (Integer[] row : field) {
-            for (Integer integer : row) {
-                System.out.print(integer + "\t");
-            }
-            System.out.println();
-        }
-        
-        System.out.println(shortestPath);*/
-
         return shortestPath;
 
+    }
+
+    private Pos[] getCellsAround(Pos pos) {
+        Pos[] cellsAround = {
+                new Pos(pos.row - 1, pos.col),
+                new Pos(pos.row + 1, pos.col),
+                new Pos(pos.row, pos.col - 1),
+                new Pos(pos.row, pos.col + 1),
+        };
+
+        return cellsAround;
     }
 
     private Integer[][] getDistanceField(Pos start, Pos finish) {

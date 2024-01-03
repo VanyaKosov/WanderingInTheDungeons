@@ -27,7 +27,8 @@ public class WanderingInTheDungeons {
                 }
 
                 var dungeon = new Dungeon(inputMap);
-                // dungeon.findPath(new Pos(1, 1), new Pos(3, 1));
+                // System.out.println(dungeon.findPath(new Pos(1, 1), new Pos(3, 1)));
+                // System.out.println(dungeon.findAccessibleCells(new Pos(3, 3)));
                 var levelController = new LevelController(input, new Player(dungeon), dungeon, display);
                 levelController.run();
                 return;
