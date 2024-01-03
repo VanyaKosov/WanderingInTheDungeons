@@ -31,6 +31,9 @@ public class Dungeon {
                     case ' ':
                         map[row][col] = Cells.EMPTY;
                         break;
+                    case '/':
+                        map[row][col] = Cells.DOOR;
+                        break;
                     case 'S':
                         map[row][col] = Cells.EMPTY;
                         if (playerPos != null) {

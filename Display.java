@@ -44,6 +44,9 @@ public class Display {
                     case EMPTY:
                         System.out.print("  ");
                         break;
+                    case DOOR:
+                        System.out.print("/ ");
+                        break;
                     case PLAYER:
                         System.out.print("@ ");
                         break;

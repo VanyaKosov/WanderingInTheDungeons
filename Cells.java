@@ -6,5 +6,5 @@
  * @version (version number or date here)
  */
 public enum Cells {
-    UNDISCOVERED, INVISIBLE, WALL, EMPTY, PLAYER, EXIT, CANDLE
+    UNDISCOVERED, INVISIBLE, WALL, EMPTY, DOOR, PLAYER, EXIT, CANDLE
 }

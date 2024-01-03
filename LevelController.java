@@ -128,7 +128,7 @@ public class LevelController {
             int roundedRow = Math.round(row);
             var currentCell = visibleMap[roundedRow][roundedCol];
             if (visible) {
-                if (currentCell == Cells.WALL) {
+                if (currentCell == Cells.WALL || currentCell == Cells.DOOR) {
                     visible = false;
                 }
                 int viewRadius = player.getViewRadius();
@@ -147,7 +147,7 @@ public class LevelController {
                 continue;
             }
 
-            if (currentCell != Cells.UNDISCOVERED && currentCell != Cells.WALL) {
+            if (currentCell != Cells.UNDISCOVERED && currentCell != Cells.WALL && currentCell != Cells.DOOR) {
                 visibleMap[roundedRow][roundedCol] = Cells.INVISIBLE;
             }
         }
