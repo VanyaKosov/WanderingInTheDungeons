@@ -44,11 +44,17 @@ public class Display {
                     case EMPTY:
                         System.out.print("  ");
                         break;
+                    case EMPTY_DO_NOT_TAKE:
+                        System.out.print("  ");
+                        break;
                     case DOOR:
                         System.out.print("/ ");
                         break;
                     case PLAYER:
                         System.out.print("@ ");
+                        break;
+                    case ENEMY:
+                        System.out.print("& ");
                         break;
                     case EXIT:
                         System.out.print("O ");

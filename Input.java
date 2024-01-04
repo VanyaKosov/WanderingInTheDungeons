@@ -18,6 +18,7 @@ public class Input implements Closeable {
             put('a', Keys.LEFT);
             put('d', Keys.RIGHT);
             put('`', Keys.MENU);
+            put(' ', Keys.SKIP);
         }
     };
 
@@ -54,7 +55,7 @@ public class Input implements Closeable {
     }
 
     public enum Keys {
-        UP, DOWN, LEFT, RIGHT, MENU
+        UP, DOWN, LEFT, RIGHT, MENU, SKIP
     }
 
     @Override

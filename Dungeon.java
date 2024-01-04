@@ -7,9 +7,11 @@ import java.util.*;
  * @version 0.0.1
  */
 public class Dungeon {
+    private static final int EMPTY_CELLS_PER_ENEMY = 20;
     private final Cells[][] map;
     private final boolean[][] visitedCells;
     private final Pos startPlayerPos;
+    private int amountOfEnemies;
 
     public Dungeon(String[] inputMap) {
         map = new Cells[inputMap.length][inputMap[0].length()];
@@ -20,6 +22,7 @@ public class Dungeon {
             }
         }
 
+        int freeSpaces = 0;
         Pos playerPos = null;
         for (int row = 0; row < inputMap.length; row++) {
             for (int col = 0; col < inputMap[0].length(); col++) {
@@ -30,12 +33,16 @@ public class Dungeon {
                         break;
                     case ' ':
                         map[row][col] = Cells.EMPTY;
+                        freeSpaces++;
+                        break;
+                    case '.':
+                        map[row][col] = Cells.EMPTY_DO_NOT_TAKE;
                         break;
                     case '/':
                         map[row][col] = Cells.DOOR;
                         break;
                     case 'S':
-                        map[row][col] = Cells.EMPTY;
+                        map[row][col] = Cells.EMPTY_DO_NOT_TAKE;
                         if (playerPos != null) {
                             throw new IllegalStateException();
                         }
@@ -56,6 +63,8 @@ public class Dungeon {
             }
         }
 
+        amountOfEnemies = freeSpaces / EMPTY_CELLS_PER_ENEMY;
+
         if (playerPos == null) {
             throw new IllegalStateException();
         }
@@ -74,7 +83,7 @@ public class Dungeon {
         Pos[] cellsAround = getCellsAround(startingPos);
         for (Pos pos : cellsAround) {
             if (map[pos.row][pos.col] == Cells.WALL || map[pos.row][pos.col] == Cells.DOOR
-                    || visitedCells[pos.row][pos.col]) {
+                    || map[pos.row][pos.col] == Cells.EXIT || visitedCells[pos.row][pos.col]) {
                 continue;
             }
             visitedCells[pos.row][pos.col] = true;
@@ -85,8 +94,13 @@ public class Dungeon {
 
     public ArrayList<Pos> findPath(Pos start, Pos finish) {
         var shortestPath = new ArrayList<Pos>();
-        var field = getDistanceField(start, finish);
         Pos currentCell = new Pos(finish.row, finish.col);
+        var field = getDistanceField(start, finish);
+        if (field == null) {
+            return null;
+        }
+
+        shortestPath.add(finish);
         for (int i = field[finish.row][finish.col]; i >= 0; i--) {
             Pos[] cellsAround = getCellsAround(currentCell);
 
@@ -104,7 +118,10 @@ public class Dungeon {
                 }
             }
         }
-        shortestPath.add(0, new Pos(start.row, start.col));
+        //shortestPath.add(0, new Pos(start.row, start.col));
+        if (shortestPath.size() > 1) {
+            shortestPath.remove(0);
+        }
 
         return shortestPath;
 
@@ -134,6 +151,10 @@ public class Dungeon {
 
         priorityQueue.add(new Cell(start, 0));
         while (true) {
+            if (priorityQueue.size() == 0) {
+                return null;
+            }
+
             Cell currentCell = priorityQueue.poll();
 
             Integer currentFieldCell = field[currentCell.pos.row][currentCell.pos.col];
@@ -154,7 +175,8 @@ public class Dungeon {
             for (Cell cell : cellsAround) {
                 int row = cell.pos.row;
                 int col = cell.pos.col;
-                if ((field[row][col] != null && field[row][col] <= cell.stepsAmount) || map[row][col] == Cells.WALL) {
+                if ((field[row][col] != null && field[row][col] <= cell.stepsAmount) || map[row][col] == Cells.WALL
+                        || map[row][col] == Cells.DOOR) {
                     continue;
                 }
 
@@ -166,6 +188,10 @@ public class Dungeon {
                 return field;
             }
         }
+    }
+
+    public int getAmountOfEnemies() {
+        return amountOfEnemies;
     }
 
     public Cells getCell(int row, int col) {

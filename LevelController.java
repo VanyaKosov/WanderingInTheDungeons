@@ -1,14 +1,21 @@
+import java.util.*;
+
 public class LevelController {
+    private final Random random = new Random();
     public final Input input;
     public final Player player;
     public final Dungeon dungeon;
     public final Display display;
+    private ArrayList<Enemy> enemies = new ArrayList<Enemy>();;
 
     public LevelController(Input input, Player player, Dungeon dungeon, Display display) {
         this.input = input;
         this.player = player;
         this.dungeon = dungeon;
         this.display = display;
+
+        addEnemies();
+        //enemies.add(new Enemy(dungeon, player, 3, new Pos(11, 9)));
 
         displayField();
     }
@@ -23,8 +30,14 @@ public class LevelController {
                     toExit = true;
                     break;
                 }
+                if (key != Input.Keys.SKIP) {
+                    player.movePlayer(key);
+                }
 
-                player.movePlayer(key);
+                for (Enemy enemy : enemies) {
+                    enemy.move();
+                }
+
                 displayField();
             }
 
@@ -42,6 +55,22 @@ public class LevelController {
         }
 
         return false;
+    }
+
+    private void addEnemies() {
+        for (int i = 0; i < dungeon.getAmountOfEnemies(); i++) {
+            Pos enemyPos;
+            while (true) {
+                int row = random.nextInt(dungeon.getHeight());
+                int col = random.nextInt(dungeon.getWidth());
+                if (dungeon.getCell(row, col) != Cells.EMPTY) {
+                    continue;
+                }
+                enemyPos = new Pos(row, col);
+                break;
+            }
+            enemies.add(new Enemy(dungeon, player, 2, enemyPos));
+        }
     }
 
     private void displayField() {
@@ -100,8 +129,23 @@ public class LevelController {
         }
 
         visibleMap[visibleMapPlayerPos.row][visibleMapPlayerPos.col] = Cells.PLAYER;
+        drawEnemies(visibleMap, visibleMapPlayerPos);
 
         display.draw(visibleMap);
+    }
+
+    private void drawEnemies(Cells[][] visibleMap, Pos visibleMapPlayerPos) {
+        Pos offset = player.getPos().sub(visibleMapPlayerPos);
+
+        for (Enemy enemy : enemies) {
+            Pos enemyPos = enemy.getPos().sub(offset);
+            if (enemyPos.row > 0 && enemyPos.col > 0
+                    && enemyPos.row < visibleMap.length && enemyPos.col < visibleMap.length
+                    && visibleMap[enemyPos.row][enemyPos.col] != Cells.INVISIBLE
+                    && visibleMap[enemyPos.row][enemyPos.col] != Cells.UNDISCOVERED) {
+                visibleMap[enemyPos.row][enemyPos.col] = Cells.ENEMY;
+            }
+        }
     }
 
     private void hideInvisibleCells(Cells[][] visibleMap, Pos edgePos, Pos playerPos) {

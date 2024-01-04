@@ -24,7 +24,9 @@ public class Player {
         stuff.put(Cells.CANDLE, new Candle());
         stuff.put(Cells.XRAY_GLASSES, new XrayGlasses());
 
-        addItem(new Candle());
+        for (int i = 0; i < 2; i++) { // Remove this loop
+            addItem(new Candle());
+        }
     }
 
     public void movePlayer(Input.Keys direction) {
