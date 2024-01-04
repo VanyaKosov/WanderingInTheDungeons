@@ -47,6 +47,9 @@ public class Dungeon {
                     case 'i':
                         map[row][col] = Cells.CANDLE;
                         break;
+                    case 'X':
+                        map[row][col] = Cells.XRAY_GLASSES;
+                        break;
                     default:
                         throw new IllegalStateException();
                 }

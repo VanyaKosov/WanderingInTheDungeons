@@ -69,30 +69,32 @@ public class LevelController {
             }
         }
 
-        for (int col = 0; col < visibleMap[0].length; col++) {
-            int firstRow = 0;
-            int lastRow = visibleMap.length - 1;
-
-            hideInvisibleCells(visibleMap, new Pos(firstRow, col), visibleMapPlayerPos);
-            hideInvisibleCells(visibleMap, new Pos(lastRow, col), visibleMapPlayerPos);
-        }
-
-        for (int row = 0; row < visibleMap.length; row++) {
-            int firstCol = 0;
-            int lastCol = visibleMap[0].length - 1;
-
-            hideInvisibleCells(visibleMap, new Pos(row, firstCol), visibleMapPlayerPos);
-            hideInvisibleCells(visibleMap, new Pos(row, lastCol), visibleMapPlayerPos);
-        }
-
-        for (int row = 0; row < visibleMap.length; row++) {
+        if (!player.hasXrayGlasses()) {
             for (int col = 0; col < visibleMap[0].length; col++) {
-                if (topRow + row < 0 || leftCol + col < 0 || topRow + row >= dungeon.getHeight()
-                        || leftCol + col >= dungeon.getWidth()) {
-                    continue;
-                }
-                if (!dungeon.getVisitedCell(topRow + row, leftCol + col)) {
-                    visibleMap[row][col] = Cells.UNDISCOVERED;
+                int firstRow = 0;
+                int lastRow = visibleMap.length - 1;
+
+                hideInvisibleCells(visibleMap, new Pos(firstRow, col), visibleMapPlayerPos);
+                hideInvisibleCells(visibleMap, new Pos(lastRow, col), visibleMapPlayerPos);
+            }
+
+            for (int row = 0; row < visibleMap.length; row++) {
+                int firstCol = 0;
+                int lastCol = visibleMap[0].length - 1;
+
+                hideInvisibleCells(visibleMap, new Pos(row, firstCol), visibleMapPlayerPos);
+                hideInvisibleCells(visibleMap, new Pos(row, lastCol), visibleMapPlayerPos);
+            }
+
+            for (int row = 0; row < visibleMap.length; row++) {
+                for (int col = 0; col < visibleMap[0].length; col++) {
+                    if (topRow + row < 0 || leftCol + col < 0 || topRow + row >= dungeon.getHeight()
+                            || leftCol + col >= dungeon.getWidth()) {
+                        continue;
+                    }
+                    if (!dungeon.getVisitedCell(topRow + row, leftCol + col)) {
+                        visibleMap[row][col] = Cells.UNDISCOVERED;
+                    }
                 }
             }
         }

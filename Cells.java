@@ -1,10 +1,10 @@
 
 /**
- * Enumeration class DungeonCells - write a description of the enum class here
+ * Enumeration class Cells - write a description of the enum class here
  *
- * @author (your name here)
- * @version (version number or date here)
+ * @author Ivan Kosov
+ * @version 0.0.1
  */
 public enum Cells {
-    UNDISCOVERED, INVISIBLE, WALL, EMPTY, DOOR, PLAYER, EXIT, CANDLE
+    UNDISCOVERED, INVISIBLE, WALL, EMPTY, DOOR, PLAYER, EXIT, CANDLE, XRAY_GLASSES
 }

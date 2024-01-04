@@ -56,6 +56,9 @@ public class Display {
                     case CANDLE:
                         System.out.print("i ");
                         break;
+                    case XRAY_GLASSES:
+                        System.out.print("X ");
+                        break;
                     default:
                         throw new IllegalStateException();
                 }

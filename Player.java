@@ -13,6 +13,7 @@ public class Player {
     private final HashMap<Cells, Item> stuff = new HashMap<>();
     private int viewRadius;
     private int fogOfWarRadius;
+    private boolean hasXrayGlasses = false;
 
     public Player(Dungeon dungeon) {
         this.dungeon = dungeon;
@@ -21,6 +22,7 @@ public class Player {
         pos.col = dungeon.getStartPlayerPos().col;
 
         stuff.put(Cells.CANDLE, new Candle());
+        stuff.put(Cells.XRAY_GLASSES, new XrayGlasses());
 
         addItem(new Candle());
     }
@@ -98,6 +100,13 @@ public class Player {
             viewRadius += lightItem.viewRadiusIncrease;
             fogOfWarRadius += lightItem.fogOfWarRadiusIncrease;
         }
+        if (item instanceof XrayGlasses) {
+            hasXrayGlasses = true;
+        }
+    }
+
+    public boolean hasXrayGlasses() {
+        return hasXrayGlasses;
     }
 
     public Pos getPos() {

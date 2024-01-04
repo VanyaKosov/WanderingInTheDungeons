@@ -1,7 +1,7 @@
 public class Candle extends LightItem {
+    private static final String DESCRIPTION = "This is just a candle. It allows you to see further in the dark.";
+
     public Candle() {
-        super("This is just a candle. It allows you to see further in the dark.",
-                1,
-                1);
+        super(DESCRIPTION, 1, 1);
     }
 }
