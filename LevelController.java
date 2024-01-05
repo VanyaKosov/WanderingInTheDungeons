@@ -69,7 +69,7 @@ public class LevelController {
                 enemyPos = new Pos(row, col);
                 break;
             }
-            enemies.add(new Enemy(dungeon, player, 2, enemyPos));
+            enemies.add(new Enemy(dungeon, player, 3, enemyPos));
         }
     }
 
