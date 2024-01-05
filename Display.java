@@ -62,6 +62,9 @@ public class Display {
                     case CANDLE:
                         System.out.print("i ");
                         break;
+                    case TEST_SWORD:
+                        System.out.print("! ");
+                        break;
                     case XRAY_GLASSES:
                         System.out.print("X ");
                         break;

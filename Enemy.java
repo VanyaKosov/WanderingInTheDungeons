@@ -8,12 +8,16 @@ public class Enemy {
     private final Pos pos;
     private final ArrayList<Pos> accessibleCells;
     private Queue<Pos> movePath = new ArrayDeque<Pos>();
+    public final ArrayList<Attack> attacks = new ArrayList<>();
+    public final Stats stats;
 
-    public Enemy(Dungeon dungeon, Player player, int viewRadius, Pos pos) {
+    public Enemy(Dungeon dungeon, Player player, int viewRadius, Pos pos, Stats stats) {
         this.dungeon = dungeon;
         this.player = player;
         this.viewRadius = viewRadius;
         this.pos = pos;
+        this.stats = stats;
+
         accessibleCells = dungeon.findAccessibleCells(pos);
     }
 
@@ -46,5 +50,27 @@ public class Enemy {
 
     public Pos getPos() {
         return new Pos(pos.row, pos.col);
+    }
+
+    public static class Attack {
+        public final String description;
+        public final Defense[] defenses;
+
+        public Attack(String description, Defense[] defenses) {
+            this.description = description;
+            this.defenses = defenses;
+        }
+    }
+
+    public static class Defense {
+        public final String description;
+        public final int damage;
+        public final String resultDescription;
+
+        public Defense(String description, int damage, String resultDescription) {
+            this.description = description;
+            this.damage = damage;
+            this.resultDescription = resultDescription;
+        }
     }
 }

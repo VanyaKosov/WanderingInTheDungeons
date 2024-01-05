@@ -14,6 +14,7 @@ public class Player {
     private int viewRadius;
     private int fogOfWarRadius;
     private boolean hasXrayGlasses = false;
+    public Stats stats = new Stats(50, 5, 3);
 
     public Player(Dungeon dungeon) {
         this.dungeon = dungeon;
@@ -22,11 +23,11 @@ public class Player {
         pos.col = dungeon.getStartPlayerPos().col;
 
         stuff.put(Cells.CANDLE, new Candle());
+        stuff.put(Cells.TEST_SWORD, new TestSword());
         stuff.put(Cells.XRAY_GLASSES, new XrayGlasses());
 
-        for (int i = 0; i < 2; i++) { // Remove this loop
-            addItem(new Candle());
-        }
+        addItem(new Candle());
+        addItem(new TestSword());
     }
 
     public void movePlayer(Input.Keys direction) {
@@ -98,9 +99,12 @@ public class Player {
 
     private void addItem(Item item) {
         inventory.add(item);
-        if (item instanceof LightItem lightItem) {
+        if (item instanceof ItemLight lightItem) {
             viewRadius += lightItem.viewRadiusIncrease;
             fogOfWarRadius += lightItem.fogOfWarRadiusIncrease;
+        }
+        if (item instanceof ItemWeapon weaponItem) {
+            // Nothing?
         }
         if (item instanceof XrayGlasses) {
             hasXrayGlasses = true;
