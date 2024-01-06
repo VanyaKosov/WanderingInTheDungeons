@@ -8,6 +8,7 @@ public class Enemy {
     private final Pos pos;
     private final ArrayList<Pos> accessibleCells;
     private Queue<Pos> movePath = new ArrayDeque<Pos>();
+    private int turnsToSkip;
     public final ArrayList<Attack> attacks = new ArrayList<>();
     public final Stats stats;
     public final String name;
@@ -22,11 +23,18 @@ public class Enemy {
         this.stats = stats;
         this.name = name;
         this.description = description;
+        turnsToSkip = 0;
 
         accessibleCells = dungeon.findAccessibleCells(pos);
     }
 
     public void move() {
+        if (turnsToSkip > 0) {
+            turnsToSkip--;
+
+            return;
+        }
+
         if (accessibleCells.size() == 0) {
             return;
         }
@@ -46,6 +54,10 @@ public class Enemy {
         Pos futurePos = movePath.poll();
         pos.row = futurePos.row;
         pos.col = futurePos.col;
+    }
+
+    public void skipTurns(int amount) {
+        turnsToSkip += amount;
     }
 
     private boolean isPlayerAround() {

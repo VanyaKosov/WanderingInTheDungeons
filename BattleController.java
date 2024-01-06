@@ -32,7 +32,7 @@ public class BattleController {
                     }
                     break;
                 case 3:
-                    if (runAway()) {
+                    if (runAway(enemy)) {
                         return 0;
                     }
                     if (enemyAttack(enemy) == -1) {
@@ -73,9 +73,10 @@ public class BattleController {
         return 2;
     }
 
-    private boolean runAway() { // returns true if ran away, and false if didn't
-        if (random.nextInt(2) == 0) {
+    private boolean runAway(Enemy enemy) { // returns true if ran away, and false if didn't
+        if (random.nextInt(3) != 0) {
             display.drawRunAwaySuccessful();
+            enemy.skipTurns(1);
             return true;
         }
 
