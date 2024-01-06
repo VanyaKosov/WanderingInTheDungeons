@@ -99,36 +99,31 @@ public class Player {
 
     private void addItem(Item item) {
         inventory.add(item);
-        if (item instanceof ItemLight lightItem) {
-            viewRadius += lightItem.viewRadiusIncrease;
-            fogOfWarRadius += lightItem.fogOfWarRadiusIncrease;
-        }
-        if (item instanceof ItemWeapon weaponItem) {
-            // Nothing?
-        }
-        if (item instanceof XrayGlasses) {
-            hasXrayGlasses = true;
-        }
+        item.apply(this);
     }
 
     public boolean hasXrayGlasses() {
         return hasXrayGlasses;
     }
 
+    public void setXrayGlasses(boolean state) {
+        hasXrayGlasses = state;
+    }
+
     public Pos getPos() {
         return new Pos(pos.row, pos.col);
     }
 
-    public void setViewRadius(int viewArea) {
-        this.viewRadius = viewArea;
+    public void addViewRadius(int viewArea) {
+        this.viewRadius += viewArea;
     }
 
     public int getViewRadius() {
         return viewRadius;
     }
 
-    public void setFogOfWarRadius(int fogOfWarArea) {
-        this.fogOfWarRadius = fogOfWarArea;
+    public void addFogOfWarRadius(int fogOfWarArea) {
+        this.fogOfWarRadius += fogOfWarArea;
     }
 
     public int getFogOfWarRadius() {

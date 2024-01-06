@@ -4,4 +4,6 @@ public abstract class Item {
     public Item(String description) {
         this.description = description;
     }
+
+    public abstract void apply(Player player);
 }

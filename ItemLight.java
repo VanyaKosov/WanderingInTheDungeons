@@ -8,4 +8,10 @@ public abstract class ItemLight extends Item {
         this.viewRadiusIncrease = viewRadiusIncrease;
         this.fogOfWarRadiusIncrease = fogOfWarRadiusIncrease;
     }
+
+    @Override
+    public void apply(Player player) {
+        player.addViewRadius(viewRadiusIncrease);
+        player.addFogOfWarRadius(fogOfWarRadiusIncrease);
+    }
 }

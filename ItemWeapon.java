@@ -7,4 +7,9 @@ public class ItemWeapon extends Item {
         this.damage = damage;
     }
 
+    @Override
+    public void apply(Player player) {
+        // Weapons don't do anything right now
+    }
+
 }

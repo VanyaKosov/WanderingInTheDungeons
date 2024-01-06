@@ -4,4 +4,9 @@ public class XrayGlasses extends Item {
     public XrayGlasses() {
         super(DESCRIPTION);
     }
+
+    @Override
+    public void apply(Player player) {
+        player.setXrayGlasses(true);
+    }
 }
