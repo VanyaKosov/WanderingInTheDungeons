@@ -2,20 +2,22 @@ import java.util.*;
 
 public class LevelController {
     private final Random random = new Random();
-    public final Input input;
-    public final Player player;
-    public final Dungeon dungeon;
-    public final Display display;
+    private final Input input;
+    private final Player player;
+    private final Dungeon dungeon;
+    private final Display display;
+    private final BattleController battleController;
     private ArrayList<Enemy> enemies = new ArrayList<Enemy>();;
 
-    public LevelController(Input input, Player player, Dungeon dungeon, Display display) {
+    public LevelController(Input input, Player player, Dungeon dungeon, Display display,
+            BattleController battleController) {
         this.input = input;
         this.player = player;
         this.dungeon = dungeon;
         this.display = display;
+        this.battleController = battleController;
 
         addEnemies();
-        //enemies.add(new Enemy(dungeon, player, 3, new Pos(11, 9)));
 
         displayField();
     }
@@ -34,8 +36,22 @@ public class LevelController {
                     player.movePlayer(key);
                 }
 
-                for (Enemy enemy : enemies) {
+                for (int i = 0; i < enemies.size(); i++) {
+                    var enemy = enemies.get(i);
+
                     enemy.move();
+
+                    if (!enemy.getPos().equals(player.getPos())) {
+                        continue;
+                    }
+
+                    int battleResult = battleController.fight(enemy);
+                    if (battleResult == 1) {
+                        enemies.remove(i);
+                    }
+                    if (battleResult == -1) {
+                        return;
+                    }
                 }
 
                 displayField();
@@ -69,7 +85,8 @@ public class LevelController {
                 enemyPos = new Pos(row, col);
                 break;
             }
-            enemies.add(new Enemy(dungeon, player, 3, enemyPos, null));
+            //enemies.add(new Enemy(dungeon, player, 3, enemyPos, null, null, null));
+            enemies.add(new MonsterOgre(dungeon, player, 3, enemyPos));
         }
     }
 

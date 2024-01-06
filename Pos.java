@@ -24,6 +24,17 @@ public class Pos {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (o instanceof Pos p) {
+            if (p.row == row && p.col == col) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    @Override
     public String toString() {
         return "{" + row + ", " + col + "}";
     }

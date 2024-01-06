@@ -10,13 +10,18 @@ public class Enemy {
     private Queue<Pos> movePath = new ArrayDeque<Pos>();
     public final ArrayList<Attack> attacks = new ArrayList<>();
     public final Stats stats;
+    public final String name;
+    public final String description;
 
-    public Enemy(Dungeon dungeon, Player player, int viewRadius, Pos pos, Stats stats) {
+    public Enemy(Dungeon dungeon, Player player, int viewRadius, Pos pos, Stats stats, String name,
+            String description) {
         this.dungeon = dungeon;
         this.player = player;
         this.viewRadius = viewRadius;
         this.pos = pos;
         this.stats = stats;
+        this.name = name;
+        this.description = description;
 
         accessibleCells = dungeon.findAccessibleCells(pos);
     }
