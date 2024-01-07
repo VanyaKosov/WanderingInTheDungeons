@@ -27,17 +27,16 @@ public class Display {
         System.out.println("Strength: " + player.stats.getArmour());
         System.out.println();
 
-        System.out.println("Your items:");
-        System.out.println("  Weapons: ");
-        for (Item item : player.getInventory()) { // To Do sort by categories first
-            if (item instanceof ItemWeapon weapon) {
-                System.out.println("  >" + weapon.name);
-                System.out.println("   " + weapon.description);
-                System.out.println("   Damage: " + weapon.damage);
-            }
-            // if (item instanceof ItemLight)
-        }
-
+        // System.out.println("Your items:");
+        // System.out.println("  Weapons: ");
+        // for (Item item : player.inventory) { // To Do sort by categories first
+        //     if (item instanceof ItemWeapon weapon) {
+        //         System.out.println("  >" + weapon.name);
+        //         System.out.println("   " + weapon.description);
+        //         System.out.println("   Damage: " + weapon.damage);
+        //     }
+        //     // if (item instanceof ItemLight)
+        // }
     }
 
     public void drawBattleMenu(Player player, Enemy enemy) {

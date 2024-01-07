@@ -9,7 +9,7 @@ import java.util.*;
 public class Player {
     private final Dungeon dungeon;
     private final Pos pos = new Pos();
-    private final ArrayList<Item> inventory = new ArrayList<>();
+    public final Inventory inventory = new Inventory();
     private final HashMap<Cells, Item> stuff = new HashMap<>();
     private int viewRadius;
     private int fogOfWarRadius;
@@ -26,8 +26,7 @@ public class Player {
         stuff.put(Cells.TEST_SWORD, new TestSword());
         stuff.put(Cells.XRAY_GLASSES, new XrayGlasses());
 
-        addItem(new Candle());
-        addItem(new TestSword());
+        inventory.addItem(stuff.get(Cells.CANDLE), 1, this);
     }
 
     public void movePlayer(Input.Keys direction) {
@@ -94,20 +93,7 @@ public class Player {
         }
         dungeon.setCell(Cells.EMPTY, pos.row, pos.col);
 
-        addItem(item);
-    }
-
-    private void addItem(Item item) {
-        inventory.add(item);
-        item.apply(this);
-    }
-
-    public void accessInventory() {
-
-    }
-
-    public ArrayList<Item> getInventory() {
-        return inventory;
+        inventory.addItem(item, 1, this);
     }
 
     public boolean hasXrayGlasses() {
