@@ -46,10 +46,11 @@ public class BattleController {
     }
 
     private int playerAttack(Enemy enemy) { // returns 1 if player won, and 2 if battle is still going.
-        int damage = Math.max(0, player.stats.strength - enemy.stats.armour);
-        enemy.stats.health -= Math.max(0, damage);
-        display.drawPlayerAttack(damage, enemy.stats.health, enemy.name);
-        if (enemy.stats.health <= 0) {
+        int damage = enemy.stats.damage(player.stats.getStrength());
+        //int damage = Math.max(0, player.stats.strength - enemy.stats.armour);
+        //enemy.stats.health -= Math.max(0, damage);
+        display.drawPlayerAttack(damage, enemy.stats.getHealth(), enemy.name);
+        if (!enemy.stats.alive()) {
             display.drawWonBattle(enemy.name);
             return 1;
         }
@@ -64,8 +65,9 @@ public class BattleController {
         var defense = attack.defenses[answer - 1];
         display.drawEnemyAttack(defense.resultDescription);
 
-        player.stats.health -= Math.max(0, defense.damage - player.stats.armour);
-        if (player.stats.health <= 0) {
+        player.stats.damage(defense.damage);
+        // player.stats.health -= Math.max(0, defense.damage - player.stats.armour);
+        if (!player.stats.alive()) {
             display.drawDefeat();
             return -1;
         }

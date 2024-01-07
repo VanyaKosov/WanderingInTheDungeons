@@ -32,6 +32,12 @@ public class LevelController {
                     toExit = true;
                     break;
                 }
+
+                if (key == Input.Keys.INVENTORY) {
+
+                    break;
+                }
+
                 if (key != Input.Keys.SKIP) {
                     player.movePlayer(key);
                 }

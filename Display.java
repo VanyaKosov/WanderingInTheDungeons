@@ -20,11 +20,34 @@ public class Display {
         System.out.println("You died!");
     }
 
+    public void drawInventory(Player player) {
+        System.out.println("Your stats:");
+        System.out.println("Health: " + player.stats.getHealth() + "/" + player.stats.getMaxHealth());
+        System.out.println("Armour: " + player.stats.getArmour());
+        System.out.println("Strength: " + player.stats.getArmour());
+        System.out.println();
+
+        System.out.println("Your items:");
+        System.out.println("  Weapons: ");
+        for (Item item : player.getInventory()) { // To Do sort by categories first
+            if (item instanceof ItemWeapon weapon) {
+                System.out.println("  >" + weapon.name);
+                System.out.println("   " + weapon.description);
+                System.out.println("   Damage: " + weapon.damage);
+            }
+            // if (item instanceof ItemLight)
+        }
+
+    }
+
     public void drawBattleMenu(Player player, Enemy enemy) {
         System.out.println("Your stats:\t\t\t\t" + enemy.name + "'s stats:");
-        System.out.println("Health: " + player.stats.health + "\t\t\t\tHealth: " + enemy.stats.health);
-        System.out.println("Armour: " + player.stats.armour + "\t\t\t\tArmour: " + enemy.stats.armour);
-        System.out.println("Strength: " + player.stats.strength + "\t\t\t\tStrength: " + enemy.stats.strength);
+        System.out
+                .println("Health: " + player.stats.getHealth() + "/" + player.stats.getMaxHealth() + "\t\t\t\tHealth: "
+                        + enemy.stats.getHealth() + "/" + enemy.stats.getMaxHealth());
+        System.out.println("Armour: " + player.stats.getArmour() + "\t\t\t\tArmour: " + enemy.stats.getArmour());
+        System.out
+                .println("Strength: " + player.stats.getStrength() + "\t\t\t\tStrength: " + enemy.stats.getStrength());
         System.out.print("\n\n\n\n\n");
         System.out.println("Please type:");
         System.out.println("1: To attack\t 2: To use an item\t 3: To run away");

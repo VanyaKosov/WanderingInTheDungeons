@@ -1,7 +1,8 @@
 public class Candle extends ItemLight {
+    private static final String NAME = "Candle";
     private static final String DESCRIPTION = "This is just a candle. It allows you to see further in the dark.";
 
     public Candle() {
-        super(DESCRIPTION, 1, 1);
+        super(NAME, DESCRIPTION, 1, 1);
     }
 }

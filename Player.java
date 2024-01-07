@@ -102,6 +102,14 @@ public class Player {
         item.apply(this);
     }
 
+    public void accessInventory() {
+
+    }
+
+    public ArrayList<Item> getInventory() {
+        return inventory;
+    }
+
     public boolean hasXrayGlasses() {
         return hasXrayGlasses;
     }

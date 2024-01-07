@@ -1,8 +1,9 @@
 public class XrayGlasses extends Item {
+    private static final String NAME = "X-Ray Glasses";
     private static final String DESCRIPTION = "These glasses allow you to see through walls";
 
     public XrayGlasses() {
-        super(DESCRIPTION);
+        super(NAME, DESCRIPTION);
     }
 
     @Override
