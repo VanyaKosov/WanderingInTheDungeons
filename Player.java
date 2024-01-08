@@ -14,7 +14,7 @@ public class Player {
     private int viewRadius;
     private int fogOfWarRadius;
     private boolean hasXrayGlasses = false;
-    public Stats stats = new Stats(50, 20, 3); // Change strength
+    public Stats stats = new Stats(50, 20, 3); // TODO: Change strength
 
     public Player(Dungeon dungeon) {
         this.dungeon = dungeon;
@@ -25,8 +25,11 @@ public class Player {
         stuff.put(Cells.CANDLE, new Candle());
         stuff.put(Cells.TEST_SWORD, new TestSword());
         stuff.put(Cells.XRAY_GLASSES, new XrayGlasses());
+        stuff.put(Cells.HEALTH_POTION, new HealthPotion());
 
-        inventory.addItem(stuff.get(Cells.CANDLE), 1, this);
+        inventory.addItem(stuff.get(Cells.CANDLE), 2, this);
+        inventory.addItem(stuff.get(Cells.TEST_SWORD), 1, this);
+        inventory.addItem(stuff.get(Cells.HEALTH_POTION), 5, this);
     }
 
     public void movePlayer(Input.Keys direction) {

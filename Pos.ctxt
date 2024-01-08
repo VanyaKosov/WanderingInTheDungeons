@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=Pos
+comment1.params=
+comment1.target=Pos()
+comment2.params=row\ col
+comment2.target=Pos(int,\ int)
+comment3.params=p
+comment3.target=Pos\ sub(Pos)
+comment4.params=p
+comment4.target=Pos\ add(Pos)
+comment5.params=p
+comment5.target=int\ manhattanDistance(Pos)
+comment6.params=o
+comment6.target=boolean\ equals(java.lang.Object)
+comment7.params=
+comment7.target=java.lang.String\ toString()
+numComments=8

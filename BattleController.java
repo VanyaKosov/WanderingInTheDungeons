@@ -5,11 +5,13 @@ public class BattleController {
     private final Display display;
     private final Player player;
     private final Input input;
+    private final InventoryController invController;
 
-    public BattleController(Display display, Player player, Input input) {
+    public BattleController(Display display, Player player, Input input, InventoryController invController) {
         this.display = display;
         this.player = player;
         this.input = input;
+        this.invController = invController;
     }
 
     public int fight(Enemy enemy) { // returns 1 if player won, -1 if lost, and 0 if player ran away.
@@ -26,7 +28,7 @@ public class BattleController {
                     }
                     break;
                 case 2:
-                    // TODO open inventory
+                    invController.accessInventory();
                     if (enemyAttack(enemy) == -1) {
                         return -1;
                     }
@@ -47,8 +49,6 @@ public class BattleController {
 
     private int playerAttack(Enemy enemy) { // returns 1 if player won, and 2 if battle is still going.
         int damage = enemy.stats.damage(player.stats.getStrength());
-        //int damage = Math.max(0, player.stats.strength - enemy.stats.armour);
-        //enemy.stats.health -= Math.max(0, damage);
         display.drawPlayerAttack(damage, enemy.stats.getHealth(), enemy.name);
         if (!enemy.stats.alive()) {
             display.drawWonBattle(enemy.name);
@@ -66,7 +66,6 @@ public class BattleController {
         display.drawEnemyAttack(defense.resultDescription);
 
         player.stats.damage(defense.damage);
-        // player.stats.health -= Math.max(0, defense.damage - player.stats.armour);
         if (!player.stats.alive()) {
             display.drawDefeat();
             return -1;

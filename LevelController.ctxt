@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=LevelController
+comment1.params=input\ player\ dungeon\ display\ battleController\ invController
+comment1.target=LevelController(Input,\ Player,\ Dungeon,\ Display,\ BattleController,\ InventoryController)
+comment2.params=
+comment2.target=void\ run()
+comment3.params=
+comment3.target=boolean\ checkForVictory()
+comment4.params=
+comment4.target=void\ addEnemies()
+comment5.params=
+comment5.target=void\ displayField()
+numComments=6

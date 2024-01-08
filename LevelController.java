@@ -7,15 +7,17 @@ public class LevelController {
     private final Dungeon dungeon;
     private final Display display;
     private final BattleController battleController;
+    private final InventoryController invController;
     private ArrayList<Enemy> enemies = new ArrayList<Enemy>();;
 
     public LevelController(Input input, Player player, Dungeon dungeon, Display display,
-            BattleController battleController) {
+            BattleController battleController, InventoryController invController) {
         this.input = input;
         this.player = player;
         this.dungeon = dungeon;
         this.display = display;
         this.battleController = battleController;
+        this.invController = invController;
 
         addEnemies();
 
@@ -34,7 +36,8 @@ public class LevelController {
                 }
 
                 if (key == Input.Keys.INVENTORY) {
-
+                    invController.accessInventory();
+                    displayField();
                     break;
                 }
 
@@ -91,7 +94,7 @@ public class LevelController {
                 enemyPos = new Pos(row, col);
                 break;
             }
-            //enemies.add(new Enemy(dungeon, player, 3, enemyPos, null, null, null));
+
             enemies.add(new MonsterOgre(dungeon, player, 3, enemyPos));
         }
     }

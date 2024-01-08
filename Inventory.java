@@ -5,7 +5,25 @@ public class Inventory {
     public final Category<ItemConsumable> consumableItems = new Category<>();
     public final Category<Item> otherItems = new Category<>();
 
+    public void removeItem(Item item, int amount, Player player) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException();
+        }
+
+        if (item instanceof ItemWeapon weapon) {
+            weaponItems.removeItem(weapon, amount);
+        } else if (item instanceof ItemConsumable consumable) {
+            consumableItems.removeItem(consumable, amount);
+        } else {
+            otherItems.removeItem(item, amount);
+        }
+    }
+
     public void addItem(Item item, int amount, Player player) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException();
+        }
+
         if (!(item instanceof ItemConsumable)) {
             item.apply(player);
         }
@@ -31,6 +49,25 @@ public class Inventory {
                 }
             }
             items.add(new InventoryItem<T>(item, amount));
+        }
+
+        private void removeItem(T item, int amount) {
+            for (int i = 0; i < items.size(); i++) {
+                var inventoryItem = items.get(i);
+                if (item == inventoryItem.item) {
+                    if (inventoryItem.amount - amount < 0) {
+                        throw new IllegalArgumentException();
+                    }
+                    inventoryItem.amount -= amount;
+
+                    if (inventoryItem.amount == 0) {
+                        items.remove(i);
+                    }
+
+                    return;
+                }
+            }
+            throw new IllegalArgumentException("Item not found");
         }
     }
 

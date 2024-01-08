@@ -60,6 +60,9 @@ public class Dungeon {
                     case 'X':
                         map[row][col] = Cells.XRAY_GLASSES;
                         break;
+                    case '*':
+                        map[row][col] = Cells.HEALTH_POTION;
+                        break;
                     default:
                         throw new IllegalStateException();
                 }

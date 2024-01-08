@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Inventory
+comment1.params=item\ amount\ player
+comment1.target=void\ removeItem(Item,\ int,\ Player)
+comment2.params=item\ amount\ player
+comment2.target=void\ addItem(Item,\ int,\ Player)
+numComments=3

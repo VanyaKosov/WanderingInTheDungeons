@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.target=ItemWeapon
+comment1.params=name\ description\ damage
+comment1.target=ItemWeapon(java.lang.String,\ java.lang.String,\ int)
+numComments=2

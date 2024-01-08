@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Enemy
+comment1.params=dungeon\ player\ viewRadius\ pos\ stats\ name\ description
+comment1.target=Enemy(Dungeon,\ Player,\ int,\ Pos,\ Stats,\ java.lang.String,\ java.lang.String)
+comment2.params=
+comment2.target=void\ move()
+comment3.params=amount
+comment3.target=void\ skipTurns(int)
+comment4.params=
+comment4.target=boolean\ isPlayerAround()
+comment5.params=
+comment5.target=Pos\ getPos()
+numComments=6

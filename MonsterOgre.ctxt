@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=MonsterOgre
+comment1.params=dungeon\ player\ viewRadius\ pos
+comment1.target=MonsterOgre(Dungeon,\ Player,\ int,\ Pos)
+comment2.params=
+comment2.target=void\ addAttacks()
+numComments=3

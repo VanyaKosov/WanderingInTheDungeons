@@ -28,13 +28,16 @@ public class WanderingInTheDungeons {
 
                 var dungeon = new Dungeon(inputMap);
                 var player = new Player(dungeon);
-                var battleController = new BattleController(display, player, input);
+                var invController = new InventoryController(player, display, input);
+                var battleController = new BattleController(display, player, input, invController);
+                // display.drawInventory(player);
                 // display.drawBattleMenu(player, new MonsterOgre(dungeon, player, 3, new Pos(1, 1)));
                 // break;
                 // System.out.println(dungeon.findPath(new Pos(1, 1), new Pos(3, 1)));
                 // System.out.println(dungeon.findAccessibleCells(new Pos(3, 3)));
 
-                var levelController = new LevelController(input, player, dungeon, display, battleController);
+                var levelController = new LevelController(input, player, dungeon, display, battleController,
+                        invController);
                 levelController.run();
                 return;
             }

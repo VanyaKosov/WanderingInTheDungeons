@@ -20,23 +20,98 @@ public class Display {
         System.out.println("You died!");
     }
 
-    public void drawInventory(Player player) {
+    /*public void drawInventory(Player player) {
+        System.out.println("Your stats:");
+        System.out.println("Health: " + player.stats.getHealth() + "/" + player.stats.getMaxHealth());
+        System.out.println("Armour: " + player.stats.getArmour());
+        System.out.println("Strength: " + player.stats.getArmour());
+        System.out.println();
+    
+        int counter = 1;
+        System.out.println("Your items:");
+        System.out.println("  Consumables: ");
+        for (Inventory.InventoryItem<ItemConsumable> consumable : player.inventory.consumableItems.items) {
+            System.out.println("   " + counter + ":" + consumable.item.name + " x" + consumable.getAmount());
+            System.out.println("    " + consumable.item.description);
+    
+            counter++;
+        }
+    
+        System.out.println();
+        System.out.println("  Weapons: ");
+        for (Inventory.InventoryItem<ItemWeapon> weapon : player.inventory.weaponItems.items) {
+            System.out.println("   " + counter + ":" + weapon.item.name + " x" + weapon.getAmount());
+            System.out.println("    " + weapon.item.description);
+            System.out.println("    Damage: " + weapon.item.damage);
+    
+            counter++;
+        }
+    
+        System.out.println();
+        System.out.println("  Other items: ");
+        for (Inventory.InventoryItem<Item> other : player.inventory.otherItems.items) {
+            System.out.println("   " + counter + ":" + other.item.name + " x" + other.getAmount());
+            System.out.println("    " + other.item.description);
+    
+            counter++;
+        }
+    }*/
+
+    public void drawMainInventory(Player player) {
         System.out.println("Your stats:");
         System.out.println("Health: " + player.stats.getHealth() + "/" + player.stats.getMaxHealth());
         System.out.println("Armour: " + player.stats.getArmour());
         System.out.println("Strength: " + player.stats.getArmour());
         System.out.println();
 
-        // System.out.println("Your items:");
-        // System.out.println("  Weapons: ");
-        // for (Item item : player.inventory) { // To Do sort by categories first
-        //     if (item instanceof ItemWeapon weapon) {
-        //         System.out.println("  >" + weapon.name);
-        //         System.out.println("   " + weapon.description);
-        //         System.out.println("   Damage: " + weapon.damage);
-        //     }
-        //     // if (item instanceof ItemLight)
-        // }
+        System.out.println("Which category of items would you like to see?");
+        System.out.println("1: consumables");
+        System.out.println("2: weapons");
+        System.out.println("3: other items");
+
+        System.out.println("\n0: to exit");
+    }
+
+    public void drawConsumablesInventory(Inventory.Category<ItemConsumable> category) {
+        int counter = 1;
+        System.out.println("  Consumables: ");
+        for (Inventory.InventoryItem<ItemConsumable> consumable : category.items) {
+            System.out.println("   " + counter + ":" + consumable.item.name + " x" + consumable.getAmount());
+            System.out.println("    " + consumable.item.description);
+
+            counter++;
+        }
+        System.out.println("   0: to exit");
+        System.out.println();
+    }
+
+    public void drawWeaponsInventory(Inventory.Category<ItemWeapon> category) {
+        int counter = 1;
+        System.out.println("  Weapons: ");
+        for (Inventory.InventoryItem<ItemWeapon> weapon : category.items) {
+            System.out.println("   " + counter + ":" + weapon.item.name + " x" + weapon.getAmount());
+            System.out.println("    " + weapon.item.description);
+            System.out.println("    Damage: " + weapon.item.damage);
+
+            counter++;
+        }
+
+        System.out.println("   0: to exit");
+        System.out.println();
+    }
+
+    public void drawOtherItemsInventory(Inventory.Category<Item> category) {
+        int counter = 1;
+        System.out.println("  Other items: ");
+        for (Inventory.InventoryItem<Item> other : category.items) {
+            System.out.println("   " + counter + ":" + other.item.name + " x" + other.getAmount());
+            System.out.println("    " + other.item.description);
+
+            counter++;
+        }
+
+        System.out.println("   0: to exit");
+        System.out.println();
     }
 
     public void drawBattleMenu(Player player, Enemy enemy) {
@@ -49,7 +124,7 @@ public class Display {
                 .println("Strength: " + player.stats.getStrength() + "\t\t\t\tStrength: " + enemy.stats.getStrength());
         System.out.print("\n\n\n\n\n");
         System.out.println("Please type:");
-        System.out.println("1: To attack\t 2: To use an item\t 3: To run away");
+        System.out.println("1: to attack\t 2: to open inventory\t 3: to run away");
     }
 
     public void drawRunAwaySuccessful() {
@@ -137,6 +212,9 @@ public class Display {
                         break;
                     case XRAY_GLASSES:
                         System.out.print("X ");
+                        break;
+                    case HEALTH_POTION:
+                        System.out.print("* ");
                         break;
                     default:
                         throw new IllegalStateException();

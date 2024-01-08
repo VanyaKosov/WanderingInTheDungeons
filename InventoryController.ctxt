@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=InventoryController
+comment1.params=player\ display\ input
+comment1.target=InventoryController(Player,\ Display,\ Input)
+comment2.params=
+comment2.target=void\ accessInventory()
+comment3.params=
+comment3.target=void\ accessConsumables()
+comment4.params=
+comment4.target=void\ accessWeapons()
+comment5.params=
+comment5.target=void\ accessOtherItems()
+numComments=6

@@ -1,6 +1,8 @@
 #BlueJ class context
 comment0.target=WanderingInTheDungeons
-comment0.text=\r\n\ The\ main\ class\ of\ the\ \ program.\r\n\r\n\ @author\ Ivan\ Kosov\r\n\ @version\ 0.0.1\r\n
+comment0.text=\r\n\ The\ main\ class\ of\ the\ program.\r\n\r\n\ @author\ Ivan\ Kosov\r\n\ @version\ 0.0.1\r\n
 comment1.params=args
 comment1.target=void\ main(java.lang.String[])
-numComments=2
+comment2.params=mapPath
+comment2.target=java.util.List\ readInputMap(java.nio.file.Path)
+numComments=3

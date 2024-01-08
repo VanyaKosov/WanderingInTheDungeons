@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.target=ItemConsumable
+comment1.params=name\ description
+comment1.target=ItemConsumable(java.lang.String,\ java.lang.String)
+numComments=2
