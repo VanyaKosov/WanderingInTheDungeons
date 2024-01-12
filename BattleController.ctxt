@@ -1,13 +1,15 @@
 #BlueJ class context
 comment0.target=BattleController
-comment1.params=display\ player\ input
-comment1.target=BattleController(Display,\ Player,\ Input)
+comment1.params=display\ player\ input\ invController
+comment1.target=BattleController(Display,\ Player,\ Input,\ InventoryController)
 comment2.params=enemy
 comment2.target=int\ fight(Enemy)
-comment3.params=enemy
-comment3.target=int\ playerAttack(Enemy)
+comment3.params=
+comment3.target=int\ chooseWeaponDamage()
 comment4.params=enemy
-comment4.target=int\ enemyAttack(Enemy)
+comment4.target=int\ playerAttack(Enemy)
 comment5.params=enemy
-comment5.target=boolean\ runAway(Enemy)
-numComments=6
+comment5.target=int\ enemyAttack(Enemy)
+comment6.params=enemy
+comment6.target=boolean\ runAway(Enemy)
+numComments=7

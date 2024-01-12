@@ -21,8 +21,12 @@ public class BattleController {
             switch (answer) {
                 case 1:
                     if (playerAttack(enemy) == 1) {
+                        display.drawWaitForEnter();
+                        input.waitForEnter();
                         return 1;
                     }
+                    display.drawWaitForEnter();
+                    input.waitForEnter();
                     if (enemyAttack(enemy) == -1) {
                         return -1;
                     }
@@ -35,6 +39,8 @@ public class BattleController {
                     break;
                 case 3:
                     if (runAway(enemy)) {
+                        display.drawWaitForEnter();
+                        input.waitForEnter();
                         return 0;
                     }
                     if (enemyAttack(enemy) == -1) {
@@ -46,9 +52,17 @@ public class BattleController {
             }
         }
     }
+    
+    private int chooseWeaponDamage() {
+        var allWeapons = player.inventory.weaponItems;
+        display.drawChooseWeapon(allWeapons);
+        int answer = input.readNumber(1, allWeapons.items.size());
+        return allWeapons.items.get(answer - 1).item.damage;
+    }
 
     private int playerAttack(Enemy enemy) { // returns 1 if player won, and 2 if battle is still going.
-        int damage = enemy.stats.damage(player.stats.getStrength());
+        int weaponDamage = chooseWeaponDamage();
+        int damage = enemy.stats.damage(player.stats.getStrength() + weaponDamage);
         display.drawPlayerAttack(damage, enemy.stats.getHealth(), enemy.name);
         if (!enemy.stats.alive()) {
             display.drawWonBattle(enemy.name);
@@ -64,6 +78,8 @@ public class BattleController {
         int answer = input.readNumber(1, attack.defenses.length);
         var defense = attack.defenses[answer - 1];
         display.drawEnemyAttack(defense.resultDescription);
+        display.drawWaitForEnter();
+        input.waitForEnter();
 
         player.stats.damage(defense.damage);
         if (!player.stats.alive()) {

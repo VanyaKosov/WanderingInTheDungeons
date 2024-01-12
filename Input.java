@@ -22,6 +22,16 @@ public class Input implements Closeable {
             put('i', Keys.INVENTORY);
         }
     };
+    
+    public void waitForEnter() {
+        while (true) {
+            var answer = wordScanner.nextLine();
+            if (answer != "") {
+                continue;
+            }
+            return;
+        }
+    }
 
     public ArrayList<Keys> readKey() {
         var allKeys = new ArrayList<Keys>();

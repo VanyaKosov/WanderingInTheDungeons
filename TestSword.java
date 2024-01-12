@@ -9,6 +9,6 @@ public class TestSword extends ItemWeapon {
 
     @Override
     public void apply(Player player) {
-        // Weapons don't do anything right now
+        // Nothing to do here
     }
 }

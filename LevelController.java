@@ -59,11 +59,18 @@ public class LevelController {
                         enemies.remove(i);
                     }
                     if (battleResult == -1) {
+                        display.drawWaitForEnter();
+                        input.waitForEnter();
+                        
                         return;
                     }
                 }
 
                 displayField();
+                var item = player.checkForItem();
+                if (item != null) {
+                    display.drawItemPickUp(item);
+                }
             }
 
             if (toExit) {
@@ -76,6 +83,10 @@ public class LevelController {
         var playerPos = player.getPos();
         if (dungeon.getCell(playerPos.row, playerPos.col) == Cells.EXIT) {
             display.drawVictory();
+            
+            display.drawWaitForEnter();
+            input.waitForEnter();
+            
             return true;
         }
 
@@ -84,21 +95,35 @@ public class LevelController {
 
     private void addEnemies() {
         for (int i = 0; i < dungeon.getAmountOfEnemies(); i++) {
-            Pos enemyPos;
-            while (true) {
-                int row = random.nextInt(dungeon.getHeight());
-                int col = random.nextInt(dungeon.getWidth());
-                if (dungeon.getCell(row, col) != Cells.EMPTY) {
-                    continue;
-                }
-                enemyPos = new Pos(row, col);
-                break;
-            }
-
-            enemies.add(new MonsterOgre(dungeon, player, 3, enemyPos));
+            enemies.add(getRandomEnemy());
         }
     }
-
+    
+    private Enemy getRandomEnemy() {
+        Pos enemyPos;
+        while (true) {
+            int row = random.nextInt(dungeon.getHeight());
+            int col = random.nextInt(dungeon.getWidth());
+            if (dungeon.getCell(row, col) != Cells.EMPTY) {
+                continue;
+            }
+            enemyPos = new Pos(row, col);
+            break;
+        }
+        
+        int choice = random.nextInt(3);
+        switch (choice) {
+            case 0:
+                return new MonsterOgre(dungeon, player, 3, enemyPos);
+            case 1:
+                return new MonsterGoblin(dungeon, player, 4, enemyPos);
+            case 2:
+                return new MonsterSkeleton(dungeon, player, 3, enemyPos);
+            default:
+                throw new IllegalStateException();
+        }
+    }
+    
     private void displayField() {
         var viewRadius = player.getViewRadius();
         var fogOfWarRadius = player.getFogOfWarRadius();

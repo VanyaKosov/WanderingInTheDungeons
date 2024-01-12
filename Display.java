@@ -13,51 +13,39 @@ public class Display {
     }
 
     public void drawVictory() {
-        System.out.println("You escaped!");
+        System.out.print('\u000C');
+        
+        System.out.println("You escaped!\n");
     }
 
     public void drawDefeat() {
-        System.out.println("You died!");
+        System.out.print('\u000C');
+        
+        System.out.println("You died!\n");
+    }
+    
+    public void drawWaitForEnter() {
+        System.out.println("Press enter to continue\n");
+    }
+    
+    public void drawItemPickUp(Item item) { // TODO fix displaying this
+        System.out.println("You've found " + item.name);
+        System.out.println(item.description);
+    }
+    
+    public void drawChooseWeapon(Inventory.Category<ItemWeapon> weapons) {
+        System.out.println("Please choose a weapon:");
+        int counter = 1;
+        for (Inventory.InventoryItem<ItemWeapon> weapon : weapons.items) {
+            System.out.println(counter + ": " + weapon.item.name);
+            counter++;
+            System.out.println("   Damage: " + weapon.item.damage);
+        }
     }
 
-    /*public void drawInventory(Player player) {
-        System.out.println("Your stats:");
-        System.out.println("Health: " + player.stats.getHealth() + "/" + player.stats.getMaxHealth());
-        System.out.println("Armour: " + player.stats.getArmour());
-        System.out.println("Strength: " + player.stats.getArmour());
-        System.out.println();
-    
-        int counter = 1;
-        System.out.println("Your items:");
-        System.out.println("  Consumables: ");
-        for (Inventory.InventoryItem<ItemConsumable> consumable : player.inventory.consumableItems.items) {
-            System.out.println("   " + counter + ":" + consumable.item.name + " x" + consumable.getAmount());
-            System.out.println("    " + consumable.item.description);
-    
-            counter++;
-        }
-    
-        System.out.println();
-        System.out.println("  Weapons: ");
-        for (Inventory.InventoryItem<ItemWeapon> weapon : player.inventory.weaponItems.items) {
-            System.out.println("   " + counter + ":" + weapon.item.name + " x" + weapon.getAmount());
-            System.out.println("    " + weapon.item.description);
-            System.out.println("    Damage: " + weapon.item.damage);
-    
-            counter++;
-        }
-    
-        System.out.println();
-        System.out.println("  Other items: ");
-        for (Inventory.InventoryItem<Item> other : player.inventory.otherItems.items) {
-            System.out.println("   " + counter + ":" + other.item.name + " x" + other.getAmount());
-            System.out.println("    " + other.item.description);
-    
-            counter++;
-        }
-    }*/
-
     public void drawMainInventory(Player player) {
+        System.out.print('\u000C');
+        
         System.out.println("Your stats:");
         System.out.println("Health: " + player.stats.getHealth() + "/" + player.stats.getMaxHealth());
         System.out.println("Armour: " + player.stats.getArmour());
@@ -73,6 +61,8 @@ public class Display {
     }
 
     public void drawConsumablesInventory(Inventory.Category<ItemConsumable> category) {
+        System.out.print('\u000C');
+        
         int counter = 1;
         System.out.println("  Consumables: ");
         for (Inventory.InventoryItem<ItemConsumable> consumable : category.items) {
@@ -86,6 +76,8 @@ public class Display {
     }
 
     public void drawWeaponsInventory(Inventory.Category<ItemWeapon> category) {
+        System.out.print('\u000C');
+        
         int counter = 1;
         System.out.println("  Weapons: ");
         for (Inventory.InventoryItem<ItemWeapon> weapon : category.items) {
@@ -101,6 +93,8 @@ public class Display {
     }
 
     public void drawOtherItemsInventory(Inventory.Category<Item> category) {
+        System.out.print('\u000C');
+        
         int counter = 1;
         System.out.println("  Other items: ");
         for (Inventory.InventoryItem<Item> other : category.items) {
@@ -115,6 +109,8 @@ public class Display {
     }
 
     public void drawBattleMenu(Player player, Enemy enemy) {
+        System.out.print('\u000C');
+        
         System.out.println("Your stats:\t\t\t\t" + enemy.name + "'s stats:");
         System.out
                 .println("Health: " + player.stats.getHealth() + "/" + player.stats.getMaxHealth() + "\t\t\t\tHealth: "
@@ -128,14 +124,20 @@ public class Display {
     }
 
     public void drawRunAwaySuccessful() {
+        System.out.print('\u000C');
+        
         System.out.println("You successfully ran away.");
     }
 
     public void drawRunAwayFailed() {
+        System.out.print('\u000C');
+        
         System.out.println("You couldn't run away");
     }
 
     public void drawEnemyAttackPreparation(String attackDescription, Enemy.Defense[] defenses) {
+        System.out.print('\u000C');
+        
         System.out.println(attackDescription);
         System.out.println("\nPlease type: ");
         int counter = 1;
@@ -147,11 +149,15 @@ public class Display {
     }
 
     public void drawEnemyAttack(String resultDescription) {
+        System.out.print('\u000C');
+        
         System.out.println(resultDescription);
         System.out.println();
     }
 
     public void drawPlayerAttack(int damage, int remainingHealth, String enemyName) {
+        System.out.print('\u000C');
+        
         System.out.println(
                 "You dealt " + damage + " damage. The " + enemyName + "'s remaining health is: " + remainingHealth);
         System.out.println();
@@ -159,9 +165,12 @@ public class Display {
 
     public void drawWonBattle(String name) {
         System.out.println("You've defeated the " + name);
+        System.out.println();
     }
 
     public void drawMainMenu(ArrayList<Path> paths, String extension) {
+        System.out.print('\u000C');
+        
         System.out.println("Please type:");
         System.out.println("0: To exit the program");
         int counter = 1;
@@ -174,6 +183,8 @@ public class Display {
     }
 
     public void draw(Cells[][] map) {
+        System.out.print('\u000C');
+        
         for (int row = 0; row < map.length; row++) {
             for (int col = 0; col < map[0].length; col++) {
                 switch (map[row][col]) {
@@ -208,6 +219,9 @@ public class Display {
                         System.out.print("i ");
                         break;
                     case TEST_SWORD:
+                        System.out.print("! ");
+                        break;
+                    case RUSTY_SWORD:
                         System.out.print("! ");
                         break;
                     case XRAY_GLASSES:

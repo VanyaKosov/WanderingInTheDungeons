@@ -55,7 +55,7 @@ public class Dungeon {
                         map[row][col] = Cells.CANDLE;
                         break;
                     case '!':
-                        map[row][col] = Cells.TEST_SWORD;
+                        map[row][col] = Cells.RUSTY_SWORD;
                         break;
                     case 'X':
                         map[row][col] = Cells.XRAY_GLASSES;

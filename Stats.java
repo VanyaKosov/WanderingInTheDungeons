@@ -44,6 +44,13 @@ public class Stats {
     public int getArmour() {
         return armour;
     }
+    
+    public void increaseArmour(int amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Negative armour");
+        }
+        armour += amount;
+    }
 
     public int getStrength() {
         return strength;

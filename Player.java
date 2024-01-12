@@ -7,6 +7,7 @@ import java.util.*;
  * @version 0.0.1
  */
 public class Player {
+    private final Display display;
     private final Dungeon dungeon;
     private final Pos pos = new Pos();
     public final Inventory inventory = new Inventory();
@@ -14,9 +15,10 @@ public class Player {
     private int viewRadius;
     private int fogOfWarRadius;
     private boolean hasXrayGlasses = false;
-    public Stats stats = new Stats(50, 20, 3); // TODO: Change strength
+    public Stats stats = new Stats(50, 5, 3);
 
-    public Player(Dungeon dungeon) {
+    public Player(Display display, Dungeon dungeon) {
+        this.display = display;
         this.dungeon = dungeon;
 
         pos.row = dungeon.getStartPlayerPos().row;
@@ -24,6 +26,7 @@ public class Player {
 
         stuff.put(Cells.CANDLE, new Candle());
         stuff.put(Cells.TEST_SWORD, new TestSword());
+        stuff.put(Cells.RUSTY_SWORD, new RustySword());
         stuff.put(Cells.XRAY_GLASSES, new XrayGlasses());
         stuff.put(Cells.HEALTH_POTION, new HealthPotion());
 
@@ -59,7 +62,7 @@ public class Player {
         pos.row = row;
         pos.col = col;
 
-        checkForItem();
+        //checkForItem();
     }
 
     public boolean canMovePlayer(Input.Keys key) {
@@ -89,14 +92,16 @@ public class Player {
         return true;
     }
 
-    private void checkForItem() {
+    public Item checkForItem() {
         var item = stuff.get(dungeon.getCell(pos.row, pos.col));
         if (item == null) {
-            return;
+            return null;
         }
         dungeon.setCell(Cells.EMPTY, pos.row, pos.col);
-
         inventory.addItem(item, 1, this);
+        
+        //display.drawItemPickUp(item);
+        return item;
     }
 
     public boolean hasXrayGlasses() {

@@ -2,9 +2,11 @@
 comment0.target=Input
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ Input\ here.\r\n\r\n\ @author\ Ivan\ Kosov\r\n\ @version\ 0.0.1\r\n
 comment1.params=
-comment1.target=java.util.ArrayList\ readKey()
-comment2.params=min\ max
-comment2.target=int\ readNumber(int,\ int)
-comment3.params=
-comment3.target=void\ close()
-numComments=4
+comment1.target=void\ waitForEnter()
+comment2.params=
+comment2.target=java.util.ArrayList\ readKey()
+comment3.params=min\ max
+comment3.target=int\ readNumber(int,\ int)
+comment4.params=
+comment4.target=void\ close()
+numComments=5
