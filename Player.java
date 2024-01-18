@@ -7,7 +7,6 @@ import java.util.*;
  * @version 0.0.1
  */
 public class Player {
-    private final Display display;
     private final Dungeon dungeon;
     private final Pos pos = new Pos();
     public final Inventory inventory = new Inventory();
@@ -17,8 +16,7 @@ public class Player {
     private boolean hasXrayGlasses = false;
     public Stats stats = new Stats(50, 5, 3);
 
-    public Player(Display display, Dungeon dungeon) {
-        this.display = display;
+    public Player(Dungeon dungeon) {
         this.dungeon = dungeon;
 
         pos.row = dungeon.getStartPlayerPos().row;
@@ -29,10 +27,11 @@ public class Player {
         stuff.put(Cells.RUSTY_SWORD, new RustySword());
         stuff.put(Cells.XRAY_GLASSES, new XrayGlasses());
         stuff.put(Cells.HEALTH_POTION, new HealthPotion());
+        stuff.put(Cells.LEATHER_ARMOR, new LeatherArmor());
 
-        inventory.addItem(stuff.get(Cells.CANDLE), 2, this);
+        inventory.addItem(stuff.get(Cells.CANDLE), 1, this);
         inventory.addItem(stuff.get(Cells.TEST_SWORD), 1, this);
-        inventory.addItem(stuff.get(Cells.HEALTH_POTION), 5, this);
+        inventory.addItem(stuff.get(Cells.HEALTH_POTION), 3, this);
     }
 
     public void movePlayer(Input.Keys direction) {
@@ -99,7 +98,7 @@ public class Player {
         }
         dungeon.setCell(Cells.EMPTY, pos.row, pos.col);
         inventory.addItem(item, 1, this);
-        
+
         //display.drawItemPickUp(item);
         return item;
     }

@@ -2,20 +2,20 @@ public class Stats {
     private int health;
     private int maxHealth;
     private int strength;
-    private int armour;
+    private int armor;
 
-    public Stats(int maxHealth, int strength, int armour) {
+    public Stats(int maxHealth, int strength, int armor) {
         this.maxHealth = maxHealth;
         this.health = maxHealth;
         this.strength = strength;
-        this.armour = armour;
+        this.armor = armor;
     }
 
     public int damage(int damage) {
         if (damage < 0) {
             throw new IllegalArgumentException("Negative damage");
         }
-        int damageAmount = Math.max(0, damage - armour);
+        int damageAmount = Math.max(0, damage - armor);
         health = Math.max(0, health - damageAmount);
         return damageAmount;
     }
@@ -41,15 +41,15 @@ public class Stats {
         return health;
     }
 
-    public int getArmour() {
-        return armour;
+    public int getArmor() {
+        return armor;
     }
-    
-    public void increaseArmour(int amount) {
+
+    public void increaseArmor(int amount) {
         if (amount <= 0) {
-            throw new IllegalArgumentException("Negative armour");
+            throw new IllegalArgumentException("Negative armor");
         }
-        armour += amount;
+        armor += amount;
     }
 
     public int getStrength() {

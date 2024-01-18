@@ -27,7 +27,7 @@ public class WanderingInTheDungeons {
                 }
 
                 var dungeon = new Dungeon(inputMap);
-                var player = new Player(display, dungeon);
+                var player = new Player(dungeon);
                 var invController = new InventoryController(player, display, input);
                 var battleController = new BattleController(display, player, input, invController);
                 // display.drawInventory(player);

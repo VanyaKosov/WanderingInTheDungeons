@@ -3,6 +3,7 @@ import java.util.*;
 public class Inventory {
     public final Category<ItemWeapon> weaponItems = new Category<>();
     public final Category<ItemConsumable> consumableItems = new Category<>();
+    public final Category<ItemArmor> armorItems = new Category<>();
     public final Category<Item> otherItems = new Category<>();
 
     public void removeItem(Item item, int amount, Player player) {
@@ -14,6 +15,8 @@ public class Inventory {
             weaponItems.removeItem(weapon, amount);
         } else if (item instanceof ItemConsumable consumable) {
             consumableItems.removeItem(consumable, amount);
+        } else if (item instanceof ItemArmor armor) {
+            armorItems.removeItem(armor, amount);
         } else {
             otherItems.removeItem(item, amount);
         }
@@ -32,6 +35,8 @@ public class Inventory {
             weaponItems.addItem(weapon, amount);
         } else if (item instanceof ItemConsumable consumable) {
             consumableItems.addItem(consumable, amount);
+        } else if (item instanceof ItemArmor armor) {
+            armorItems.addItem(armor, amount);
         } else {
             otherItems.addItem(item, amount);
         }

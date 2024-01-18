@@ -54,14 +54,17 @@ public class Dungeon {
                     case 'i':
                         map[row][col] = Cells.CANDLE;
                         break;
-                    case '!':
+                    case 'r':
                         map[row][col] = Cells.RUSTY_SWORD;
                         break;
-                    case 'X':
+                    case 'x':
                         map[row][col] = Cells.XRAY_GLASSES;
                         break;
-                    case '*':
+                    case 'h':
                         map[row][col] = Cells.HEALTH_POTION;
+                        break;
+                    case 'l':
+                        map[row][col] = Cells.LEATHER_ARMOR;
                         break;
                     default:
                         throw new IllegalStateException();

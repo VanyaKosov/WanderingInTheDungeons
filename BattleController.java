@@ -57,7 +57,8 @@ public class BattleController {
         var allWeapons = player.inventory.weaponItems;
         display.drawChooseWeapon(allWeapons);
         int answer = input.readNumber(1, allWeapons.items.size());
-        return allWeapons.items.get(answer - 1).item.damage;
+        //return allWeapons.items.get(answer - 1).item.damage;
+        return allWeapons.items.get(answer - 1).item.getDamage();
     }
 
     private int playerAttack(Enemy enemy) { // returns 1 if player won, and 2 if battle is still going.

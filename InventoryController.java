@@ -12,7 +12,7 @@ public class InventoryController {
     public void accessInventory() {
         while (true) {
             display.drawMainInventory(player);
-            int answer = input.readNumber(0, 3);
+            int answer = input.readNumber(0, 4);
             switch (answer) {
                 case 0:
                     return;
@@ -23,6 +23,9 @@ public class InventoryController {
                     accessWeapons();
                     break;
                 case 3:
+                    accessArmor();
+                    break;
+                case 4:
                     accessOtherItems();
                     break;
                 default:
@@ -46,6 +49,14 @@ public class InventoryController {
 
     private void accessWeapons() {
         display.drawWeaponsInventory(player.inventory.weaponItems);
+        int answer = input.readNumber(0, 0);
+        if (answer == 0) {
+            return;
+        }
+    }
+
+    private void accessArmor() {
+        display.drawArmorInventory(player.inventory.armorItems);
         int answer = input.readNumber(0, 0);
         if (answer == 0) {
             return;

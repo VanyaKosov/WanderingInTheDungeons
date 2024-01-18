@@ -179,8 +179,8 @@ public class LevelController {
             }
         }
 
-        visibleMap[visibleMapPlayerPos.row][visibleMapPlayerPos.col] = Cells.PLAYER;
         drawEnemies(visibleMap, visibleMapPlayerPos);
+        visibleMap[visibleMapPlayerPos.row][visibleMapPlayerPos.col] = Cells.PLAYER;
 
         display.draw(visibleMap);
     }
