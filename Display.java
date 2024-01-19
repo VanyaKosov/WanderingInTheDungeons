@@ -242,13 +242,13 @@ public class Display {
             for (int col = 0; col < map[0].length; col++) {
                 switch (map[row][col]) {
                     case UNDISCOVERED:
-                        System.out.print(". ");
+                        System.out.print("..");
                         break;
                     case INVISIBLE:
-                        System.out.print("? ");
+                        System.out.print("??");
                         break;
                     case WALL:
-                        System.out.print("# ");
+                        System.out.print("##");
                         break;
                     case EMPTY:
                         System.out.print("  ");
@@ -257,37 +257,37 @@ public class Display {
                         System.out.print("  ");
                         break;
                     case DOOR:
-                        System.out.print("/ ");
+                        System.out.print("//");
                         break;
                     case PLAYER:
-                        System.out.print("@ ");
+                        System.out.print("[]");
                         break;
                     case ENEMY:
-                        System.out.print("& ");
+                        System.out.print("<>");
                         break;
                     case EXIT:
-                        System.out.print("O ");
+                        System.out.print("()");
                         break;
                     case CANDLE:
-                        System.out.print("i ");
+                        System.out.print("ii");
                         break;
                     case TEST_SWORD:
-                        System.out.print("! ");
+                        System.out.print("TS");
                         break;
                     case RUSTY_SWORD:
-                        System.out.print("! ");
+                        System.out.print("RS");
                         break;
                     case STEEL_SWORD:
-                        System.out.print("! ");
+                        System.out.print("SS");
                         break;
                     case XRAY_GLASSES:
-                        System.out.print("! ");
+                        System.out.print("XG");
                         break;
                     case HEALTH_POTION:
-                        System.out.print("! ");
+                        System.out.print("HP");
                         break;
                     case LEATHER_ARMOR:
-                        System.out.print("! ");
+                        System.out.print("LA");
                         break;
                     default:
                         throw new IllegalStateException();
