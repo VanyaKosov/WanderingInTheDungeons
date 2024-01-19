@@ -2,11 +2,14 @@ import java.nio.file.*;
 import java.util.*;
 
 /**
- * Displays all of the information
+ * Displays everything
  *
  * @author Ivan Kosov
  */
 public class Display {
+    /**
+     * Default constructor
+     */
     public Display() {
 
     }
@@ -38,14 +41,18 @@ public class Display {
 
     /**
      * Shows picked up item
+     * 
+     * @param item is the item that was picked up
      */
-    public void drawItemPickUp(Item item) { // TODO fix displaying this
+    public void drawItemPickUp(Item item) {
         System.out.println("You've found " + item.name);
         System.out.println(item.description);
     }
 
     /**
      * Asks user to choose a weapon
+     * 
+     * @param weapons is weapons inventory category
      */
     public void drawChooseWeapon(Inventory.Category<ItemWeapon> weapons) {
         System.out.println("Please choose a weapon:");
@@ -59,6 +66,8 @@ public class Display {
 
     /**
      * Displays inventory
+     * 
+     * @param player is an instance of Player class
      */
     public void drawMainInventory(Player player) {
         System.out.print('\u000C');
@@ -79,7 +88,9 @@ public class Display {
     }
 
     /**
-     * Displays consumables sub inventory
+     * Displays the list of consumables
+     * 
+     * @param category is consumables inventory category
      */
     public void drawConsumablesInventory(Inventory.Category<ItemConsumable> category) {
         System.out.print('\u000C');
@@ -98,6 +109,11 @@ public class Display {
         System.out.println();
     }
 
+    /**
+     * Displays the list of weapons
+     * 
+     * @param category is weapons inventory category
+     */
     public void drawWeaponsInventory(Inventory.Category<ItemWeapon> category) {
         System.out.print('\u000C');
 
@@ -116,6 +132,11 @@ public class Display {
         System.out.println();
     }
 
+    /**
+     * Displays the list of armors
+     * 
+     * @param category is armor inventory category
+     */
     public void drawArmorInventory(Inventory.Category<ItemArmor> category) {
         System.out.print('\u000C');
 
@@ -134,6 +155,11 @@ public class Display {
         System.out.println();
     }
 
+    /**
+     * Displays the list of items that are not in one of the other categories
+     * 
+     * @param category is other inventory category
+     */
     public void drawOtherItemsInventory(Inventory.Category<Item> category) {
         System.out.print('\u000C');
 
@@ -151,6 +177,11 @@ public class Display {
         System.out.println();
     }
 
+    /**
+     * Displays enemy description
+     * 
+     * @param enemy is the enemy you are fighting
+     */
     public void drawBattleIntroduction(Enemy enemy) {
         System.out.print('\u000C');
 
@@ -160,6 +191,12 @@ public class Display {
         System.out.println("\nPress enter to continue");
     }
 
+    /**
+     * Displays main battle menu
+     * 
+     * @param player is the instance of Player class
+     * @param enemy is the enemy you are fighting
+     */
     public void drawBattleMenu(Player player, Enemy enemy) {
         System.out.print('\u000C');
 
@@ -175,18 +212,30 @@ public class Display {
         System.out.println("1: attack\t 2: open inventory\t 3: run away");
     }
 
+    /**
+     * Displays that you successfully ran away
+     */
     public void drawRunAwaySuccessful() {
         System.out.print('\u000C');
 
         System.out.println("You successfully ran away.");
     }
 
+    /**
+     * Displays that you couldn't run away
+     */
     public void drawRunAwayFailed() {
         System.out.print('\u000C');
 
         System.out.println("You couldn't run away");
     }
 
+    /**
+     * Displays what attack enemy will use, and gives player a choice of what to do
+     * 
+     * @param attackDescription is the description of enemy's attack
+     * @param defenses is the list of possible player actions
+     */
     public void drawEnemyAttackPreparation(String attackDescription, Enemy.Defense[] defenses) {
         System.out.print('\u000C');
 
@@ -200,6 +249,11 @@ public class Display {
         System.out.println();
     }
 
+    /**
+     * Displays the result of enemy's attack
+     * 
+     * @param resultDescription is the result of player's and enemy's actions
+     */
     public void drawEnemyAttack(String resultDescription) {
         System.out.print('\u000C');
 
@@ -207,6 +261,13 @@ public class Display {
         System.out.println();
     }
 
+    /**
+     * Displays the damage dealt to the enemy
+     * 
+     * @param damage is the amount of damage dealt
+     * @param remainingHealth is the remaining enemy health
+     * @param enemyName is the name of the enemy player is fighting
+     */
     public void drawPlayerAttack(int damage, int remainingHealth, String enemyName) {
         System.out.print('\u000C');
 
@@ -215,11 +276,22 @@ public class Display {
         System.out.println();
     }
 
+    /**
+     * Displays that player have defeated the enemy
+     * 
+     * @param name is the name of the monster
+     */
     public void drawWonBattle(String name) {
         System.out.println("You've defeated the " + name);
         System.out.println();
     }
 
+    /**
+     * Displays the main menu
+     * 
+     * @param paths is an arraylist of all possible dungeons
+     * @param extension is the extension of the dungeon files (to remove them before displaying)
+     */
     public void drawMainMenu(ArrayList<Path> paths, String extension) {
         System.out.print('\u000C');
 
@@ -235,6 +307,11 @@ public class Display {
         }
     }
 
+    /**
+     * Displays the given fragment of the dungeon (what the player can see)
+     * 
+     * @param map is a fragment of the dungeon that needs to be displayed
+     */
     public void draw(Cells[][] map) {
         System.out.print('\u000C');
 

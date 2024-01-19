@@ -3,10 +3,9 @@ import java.nio.file.*;
 import java.util.List;
 
 /**
- * The main class of the program.
+ * The main class of the program
  *
  * @author Ivan Kosov
- * @version 0.0.1
  */
 public class WanderingInTheDungeons {
     public static void main(String[] args) throws IOException {
@@ -30,20 +29,21 @@ public class WanderingInTheDungeons {
                 var player = new Player(dungeon);
                 var invController = new InventoryController(player, display, input);
                 var battleController = new BattleController(display, player, input, invController);
-                // display.drawInventory(player);
-                // display.drawBattleMenu(player, new MonsterOgre(dungeon, player, 3, new Pos(1, 1)));
-                // break;
-                // System.out.println(dungeon.findPath(new Pos(1, 1), new Pos(3, 1)));
-                // System.out.println(dungeon.findAccessibleCells(new Pos(3, 3)));
-
                 var levelController = new LevelController(input, player, dungeon, display, battleController,
                         invController);
                 levelController.run();
-                //return;
+                ;
             }
         }
     }
 
+    /**
+     * Reads dungeon map from a file
+     * 
+     * @param mapPath is the path of the file with the map
+     * @return List of lines of the file
+     * @throws IOException
+     */
     private static List<String> readInputMap(Path mapPath) throws IOException {
         return Files.readAllLines(mapPath);
     }
