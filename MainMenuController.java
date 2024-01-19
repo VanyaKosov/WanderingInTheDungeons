@@ -2,7 +2,17 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.util.ArrayList;
 
+/**
+ * @author Ivan Kosov
+ */
 public class MainMenuController {
+    /**
+     * Controls main menu
+     * @param input is an instance of class Input
+     * @param display is an instance of class Display
+     * @return Path is a file which has the information about selected dungeon
+     * @throws IOException
+     */
     public Path showMainMenu(Input input, Display display) throws IOException {
         String extension = ".dungeon";
 

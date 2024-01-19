@@ -1,6 +1,6 @@
 public class MonsterOgre extends Enemy {
     public static final String name = "Ogre";
-    public static final String description = "A terrifying, green, stinking giant. It wields a club made out of a whole tree as it's weapon";
+    public static final String description = "A terrifying, green, stinking giant. As it's weapon, it wields a club made out of a whole tree.";
 
     public MonsterOgre(Dungeon dungeon, Player player, int viewRadius, Pos pos) {
         super(dungeon, player, viewRadius, pos, new Stats(60, 10, 7), name, description);

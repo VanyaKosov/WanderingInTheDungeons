@@ -14,7 +14,7 @@ public class Player {
     private int viewRadius;
     private int fogOfWarRadius;
     private boolean hasXrayGlasses = false;
-    public Stats stats = new Stats(50, 5, 3);
+    public Stats stats = new Stats(50, 5, 0);
 
     public Player(Dungeon dungeon) {
         this.dungeon = dungeon;
@@ -25,12 +25,13 @@ public class Player {
         stuff.put(Cells.CANDLE, new Candle());
         stuff.put(Cells.TEST_SWORD, new TestSword());
         stuff.put(Cells.RUSTY_SWORD, new RustySword());
+        stuff.put(Cells.STEEL_SWORD, new SteelSword());
         stuff.put(Cells.XRAY_GLASSES, new XrayGlasses());
         stuff.put(Cells.HEALTH_POTION, new HealthPotion());
         stuff.put(Cells.LEATHER_ARMOR, new LeatherArmor());
 
         inventory.addItem(stuff.get(Cells.CANDLE), 1, this);
-        inventory.addItem(stuff.get(Cells.TEST_SWORD), 1, this);
+        //inventory.addItem(stuff.get(Cells.TEST_SWORD), 1, this);
         inventory.addItem(stuff.get(Cells.HEALTH_POTION), 3, this);
     }
 

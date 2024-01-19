@@ -15,6 +15,9 @@ public class BattleController {
     }
 
     public int fight(Enemy enemy) { // returns 1 if player won, -1 if lost, and 0 if player ran away.
+        display.drawBattleIntroduction(enemy);
+        input.waitForEnter();
+        
         while (true) {
             display.drawBattleMenu(player, enemy);
             int answer = input.readNumber(1, 3);

@@ -2,37 +2,51 @@ import java.nio.file.*;
 import java.util.*;
 
 /**
- * Write a description of class Display here.
+ * Displays all of the information
  *
  * @author Ivan Kosov
- * @version 0.0.1
  */
 public class Display {
     public Display() {
 
     }
 
+    /**
+     * Displays victory
+     */
     public void drawVictory() {
         System.out.print('\u000C');
 
         System.out.println("You escaped!\n");
     }
 
+    /**
+     * Displays defeat
+     */
     public void drawDefeat() {
         System.out.print('\u000C');
 
         System.out.println("You died!\n");
     }
 
+    /**
+     * Asks user to press enter
+     */
     public void drawWaitForEnter() {
         System.out.println("Press enter to continue\n");
     }
 
+    /**
+     * Shows picked up item
+     */
     public void drawItemPickUp(Item item) { // TODO fix displaying this
         System.out.println("You've found " + item.name);
         System.out.println(item.description);
     }
 
+    /**
+     * Asks user to choose a weapon
+     */
     public void drawChooseWeapon(Inventory.Category<ItemWeapon> weapons) {
         System.out.println("Please choose a weapon:");
         int counter = 1;
@@ -43,6 +57,9 @@ public class Display {
         }
     }
 
+    /**
+     * Displays inventory
+     */
     public void drawMainInventory(Player player) {
         System.out.print('\u000C');
 
@@ -61,6 +78,9 @@ public class Display {
         System.out.println("\n0: close");
     }
 
+    /**
+     * Displays consumables sub inventory
+     */
     public void drawConsumablesInventory(Inventory.Category<ItemConsumable> category) {
         System.out.print('\u000C');
 
@@ -86,7 +106,7 @@ public class Display {
         for (Inventory.InventoryItem<ItemWeapon> weapon : category.items) {
             System.out.println("   " + counter + ":" + weapon.item.name + " x" + weapon.getAmount());
             System.out.println("    " + weapon.item.description);
-            System.out.println("    Damage: " + weapon.item.damage + "-" + weapon.item.maxDamage);
+            System.out.println("    Damage: " + weapon.item.minDamage + "-" + weapon.item.maxDamage);
 
             counter++;
         }
@@ -129,6 +149,15 @@ public class Display {
         System.out.println();
         System.out.println("   0: return");
         System.out.println();
+    }
+
+    public void drawBattleIntroduction(Enemy enemy) {
+        System.out.print('\u000C');
+
+        System.out.println("You've met " + enemy.name);
+        System.out.println(enemy.description);
+
+        System.out.println("\nPress enter to continue");
     }
 
     public void drawBattleMenu(Player player, Enemy enemy) {
@@ -246,6 +275,9 @@ public class Display {
                         System.out.print("! ");
                         break;
                     case RUSTY_SWORD:
+                        System.out.print("! ");
+                        break;
+                    case STEEL_SWORD:
                         System.out.print("! ");
                         break;
                     case XRAY_GLASSES:

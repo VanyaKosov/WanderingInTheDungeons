@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Stats
-comment1.params=maxHealth\ strength\ armour
+comment1.params=maxHealth\ strength\ armor
 comment1.target=Stats(int,\ int,\ int)
 comment2.params=damage
 comment2.target=int\ damage(int)
@@ -13,9 +13,9 @@ comment5.target=int\ getMaxHealth()
 comment6.params=
 comment6.target=int\ getHealth()
 comment7.params=
-comment7.target=int\ getArmour()
+comment7.target=int\ getArmor()
 comment8.params=amount
-comment8.target=void\ increaseArmour(int)
+comment8.target=void\ increaseArmor(int)
 comment9.params=
 comment9.target=int\ getStrength()
 numComments=10

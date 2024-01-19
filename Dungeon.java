@@ -57,6 +57,9 @@ public class Dungeon {
                     case 'r':
                         map[row][col] = Cells.RUSTY_SWORD;
                         break;
+                    case 's':
+                        map[row][col] = Cells.STEEL_SWORD;
+                        break;
                     case 'x':
                         map[row][col] = Cells.XRAY_GLASSES;
                         break;

@@ -1,5 +1,7 @@
 #BlueJ class context
 comment0.target=MainMenuController
+comment0.text=\r\n\ @author\ Ivan\ Kosov\r\n
 comment1.params=input\ display
 comment1.target=java.nio.file.Path\ showMainMenu(Input,\ Display)
+comment1.text=\r\n\ Controls\ main\ menu\r\n\ @param\ input\ is\ an\ instance\ of\ class\ Input\r\n\ @param\ display\ is\ an\ instance\ of\ class\ Display\r\n\ @return\ Path\ is\ a\ file\ which\ has\ the\ information\ about\ selected\ dungeon\r\n\ @throws\ IOException\r\n
 numComments=2
