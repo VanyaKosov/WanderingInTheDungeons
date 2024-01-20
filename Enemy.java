@@ -20,6 +20,7 @@ public class Enemy {
     public final String description;
 
     /**
+     * Initializes the fields
      * 
      * @param dungeon is an instance of the Dungeon class
      * @param player is an instance of the Player class

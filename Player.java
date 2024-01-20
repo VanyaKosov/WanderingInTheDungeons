@@ -1,10 +1,9 @@
 import java.util.*;
 
 /**
- * Write a description of class Player here.
+ * Stores all of the information about the player
  *
  * @author Ivan Kosov
- * @version 0.0.1
  */
 public class Player {
     private final Dungeon dungeon;
@@ -16,6 +15,11 @@ public class Player {
     private boolean hasXrayGlasses = false;
     public Stats stats = new Stats(30, 5, 0);
 
+    /**
+     * Initializes the player
+     * 
+     * @param dungeon is the instance of the Dungeon class
+     */
     public Player(Dungeon dungeon) {
         this.dungeon = dungeon;
 
@@ -35,6 +39,11 @@ public class Player {
         inventory.addItem(stuff.get(Cells.HEALTH_POTION), 3, this);
     }
 
+    /**
+     * Moves the player in a given direction
+     * 
+     * @param direction is the direction to move to
+     */
     public void movePlayer(Input.Keys direction) {
         if (!canMovePlayer(direction)) {
             return;
@@ -61,10 +70,14 @@ public class Player {
 
         pos.row = row;
         pos.col = col;
-
-        //checkForItem();
     }
 
+    /**
+     * Checks if the player can move in a given direction
+     * 
+     * @param key is the direction where to move
+     * @return true if can move, false if can't
+     */
     public boolean canMovePlayer(Input.Keys key) {
         int row = pos.row;
         int col = pos.col;
@@ -92,6 +105,11 @@ public class Player {
         return true;
     }
 
+    /**
+     * Checks if the player is on the item and picks it up
+     * 
+     * @return item that was picked up
+     */
     public Item checkForItem() {
         var item = stuff.get(dungeon.getCell(pos.row, pos.col));
         if (item == null) {
@@ -100,34 +118,60 @@ public class Player {
         dungeon.setCell(Cells.EMPTY, pos.row, pos.col);
         inventory.addItem(item, 1, this);
 
-        //display.drawItemPickUp(item);
         return item;
     }
 
+    /**
+     * @return true if player has X-Ray Glasses, false if doesn't
+     */
     public boolean hasXrayGlasses() {
         return hasXrayGlasses;
     }
 
+    /**
+     * Set the state of the X-Ray Glasses
+     * 
+     * @param state is true to add X-Ray Glasses, and false to remove them
+     */
     public void setXrayGlasses(boolean state) {
         hasXrayGlasses = state;
     }
 
+    /**
+     * @return player's position
+     */
     public Pos getPos() {
         return new Pos(pos.row, pos.col);
     }
 
-    public void addViewRadius(int viewArea) {
-        this.viewRadius += viewArea;
+    /**
+     * Increase view radius by a given amount
+     * 
+     * @param viewRadius is the amount increase
+     */
+    public void addViewRadius(int viewRadius) {
+        this.viewRadius += viewRadius;
     }
 
+    /**
+     * @return current player's view radius
+     */
     public int getViewRadius() {
         return viewRadius;
     }
 
+    /**
+     * Increase fog of war radius by a given amount
+     * 
+     * @param fogOfWarArea is the amount increase
+     */
     public void addFogOfWarRadius(int fogOfWarArea) {
         this.fogOfWarRadius += fogOfWarArea;
     }
 
+    /**
+     * @return current player's fog of war radius
+     */
     public int getFogOfWarRadius() {
         return fogOfWarRadius;
     }

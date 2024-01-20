@@ -1,9 +1,8 @@
 
 /**
- * Write a description of class SteelSword here.
+ * Increases player's strength by 7-12
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Ivan Kosov
  */
 public class SteelSword extends ItemWeapon {
     private static final String NAME = "Steel Sword";

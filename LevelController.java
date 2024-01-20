@@ -1,5 +1,10 @@
 import java.util.*;
 
+/**
+ * Controls the game
+ * 
+ * @author Ivan Kosov
+ */
 public class LevelController {
     private final Random random = new Random();
     private final Input input;
@@ -10,6 +15,16 @@ public class LevelController {
     private final InventoryController invController;
     private ArrayList<Enemy> enemies = new ArrayList<Enemy>();;
 
+    /**
+     * Initializes the fields and spawns enemies
+     * 
+     * @param input is the instance of the Input class
+     * @param player is the instance of the Player class
+     * @param dungeon is the instance of the Dungeon class
+     * @param display is the instance of the Display class
+     * @param battleController is the instance of the BattleController class
+     * @param invController is the instance of the InventoryController class
+     */
     public LevelController(Input input, Player player, Dungeon dungeon, Display display,
             BattleController battleController, InventoryController invController) {
         this.input = input;
@@ -24,6 +39,9 @@ public class LevelController {
         displayField();
     }
 
+    /**
+     * Updates the game every turn
+     */
     public void run() {
         while (!checkForVictory()) {
             var allKeys = input.readKey();
@@ -61,7 +79,7 @@ public class LevelController {
                     if (battleResult == -1) {
                         display.drawWaitForEnter();
                         input.waitForEnter();
-                        
+
                         return;
                     }
                 }
@@ -79,26 +97,39 @@ public class LevelController {
         }
     }
 
+    /**
+     * Checks if the player has escaped through the portal
+     * 
+     * @return true if won, false if didn't
+     */
     private boolean checkForVictory() {
         var playerPos = player.getPos();
         if (dungeon.getCell(playerPos.row, playerPos.col) == Cells.EXIT) {
             display.drawVictory();
-            
+
             display.drawWaitForEnter();
             input.waitForEnter();
-            
+
             return true;
         }
 
         return false;
     }
 
+    /**
+     * Adds random enemies
+     */
     private void addEnemies() {
         for (int i = 0; i < dungeon.getAmountOfEnemies(); i++) {
             enemies.add(getRandomEnemy());
         }
     }
-    
+
+    /**
+     * Creates a random enemy
+     * 
+     * @return a new instance of one of the classes that inherit Enemy class with random position
+     */
     private Enemy getRandomEnemy() {
         Pos enemyPos;
         while (true) {
@@ -110,7 +141,7 @@ public class LevelController {
             enemyPos = new Pos(row, col);
             break;
         }
-        
+
         int choice = random.nextInt(3);
         switch (choice) {
             case 0:
@@ -123,7 +154,10 @@ public class LevelController {
                 throw new IllegalStateException();
         }
     }
-    
+
+    /**
+     * Processes a piece of map around the player, and displays it
+     */
     private void displayField() {
         var viewRadius = player.getViewRadius();
         var fogOfWarRadius = player.getFogOfWarRadius();
@@ -185,6 +219,12 @@ public class LevelController {
         display.draw(visibleMap);
     }
 
+    /**
+     * Draws enemies on a given map
+     * 
+     * @param visibleMap is a map to draw enemies on to
+     * @param visibleMapPlayerPos is the position of the player on a given map
+     */
     private void drawEnemies(Cells[][] visibleMap, Pos visibleMapPlayerPos) {
         Pos offset = player.getPos().sub(visibleMapPlayerPos);
 
@@ -199,6 +239,13 @@ public class LevelController {
         }
     }
 
+    /**
+     * Uses DDA (Digital Differential Analyzer) algorithm to hide the cells which player can't see through walls and doors
+     * 
+     * @param visibleMap is the piece of map to process
+     * @param edgePos is the position of a cell on the edge of the map
+     * @param playerPos is the position of the player
+     */
     private void hideInvisibleCells(Cells[][] visibleMap, Pos edgePos, Pos playerPos) {
         int deltaCol = edgePos.col - playerPos.col;
         int deltaRow = edgePos.row - playerPos.row;

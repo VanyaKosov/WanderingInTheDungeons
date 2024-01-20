@@ -8,6 +8,13 @@ public class InventoryController {
     private final Display display;
     private final Input input;
 
+    /**
+     * Initializes the fields
+     * 
+     * @param player is the instance of the Player class
+     * @param display is the instance of the Display class
+     * @param input is the instance of the Input class
+     */
     public InventoryController(Player player, Display display, Input input) {
         this.player = player;
         this.display = display;
