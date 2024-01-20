@@ -9,8 +9,9 @@ import java.util.List;
  */
 public class WanderingInTheDungeons {
     public static void main(String[] args) throws IOException {
-
         try (var input = new Input()) {
+            showTutorial();
+            input.waitForEnter();
             while (true) {
                 var display = new Display();
                 var mainMenuController = new MainMenuController();
@@ -46,5 +47,14 @@ public class WanderingInTheDungeons {
      */
     private static List<String> readInputMap(Path mapPath) throws IOException {
         return Files.readAllLines(mapPath);
+    }
+    
+    private static void showTutorial() throws IOException {
+        var tutorial = Files.readAllLines(Paths.get("README.txt"));
+        for (String line : tutorial) {
+            System.out.println(line);
+        }
+        
+        System.out.print("\nPress enter to continue");
     }
 }

@@ -14,7 +14,7 @@ public class Player {
     private int viewRadius;
     private int fogOfWarRadius;
     private boolean hasXrayGlasses = false;
-    public Stats stats = new Stats(50, 5, 0);
+    public Stats stats = new Stats(30, 5, 0);
 
     public Player(Dungeon dungeon) {
         this.dungeon = dungeon;

@@ -1,15 +1,22 @@
 #BlueJ class context
 comment0.target=BattleController
+comment0.text=\r\n\ Controls\ all\ of\ the\ battles\r\n\ \r\n\ @author\ Ivan\ Kosov\r\n
 comment1.params=display\ player\ input\ invController
 comment1.target=BattleController(Display,\ Player,\ Input,\ InventoryController)
+comment1.text=\r\n\ Initializes\ the\ fields\r\n\ \r\n\ @param\ display\ is\ the\ instance\ of\ the\ Display\ class\r\n\ @param\ player\ is\ the\ instance\ of\ the\ Player\ class\r\n\ @param\ input\ is\ the\ instance\ of\ the\ Input\ class\r\n\ @param\ invController\ is\ the\ instance\ of\ the\ InventoryController\ class\r\n
 comment2.params=enemy
 comment2.target=int\ fight(Enemy)
+comment2.text=\r\n\ Controls\ the\ fight\ between\ player\ and\ an\ enemy\r\n\ \r\n\ @param\ enemy\ is\ the\ enemy\ player\ fights\r\n\ @return\ the\ result\ of\ the\ battle\ (1\ if\ player\ won,\ -1\ if\ lost,\ and\ 0\ if\ player\ ran\ away)\r\n
 comment3.params=
 comment3.target=int\ chooseWeaponDamage()
+comment3.text=\r\n\ Asks\ the\ player\ to\ choose\ the\ weapon\r\n\ \r\n\ @return\ damage\ of\ the\ chosen\ weapon\r\n
 comment4.params=enemy
 comment4.target=int\ playerAttack(Enemy)
+comment4.text=\r\n\ Player\ attacks\ the\ enemy\r\n\ \r\n\ @param\ enemy\ is\ the\ enemy\ player\ fights\r\n\ @return\ the\ result\ of\ the\ attack\ (1\ if\ player\ won,\ and\ 2\ if\ battle\ is\ still\ going)\r\n
 comment5.params=enemy
 comment5.target=int\ enemyAttack(Enemy)
+comment5.text=\r\n\ Enemy\ attacks\ player\r\n\ \r\n\ @param\ enemy\ is\ the\ enemy\ player\ fights\r\n\ @return\ the\ result\ of\ the\ attack\ (-1\ if\ player\ lost,\ and\ 2\ if\ battle\ is\ still\ going)\r\n
 comment6.params=enemy
 comment6.target=boolean\ runAway(Enemy)
+comment6.text=\r\n\ Decides\ if\ the\ player\ ran\ away\ or\ not\ (2\ in\ 3\ chance)\r\n\ \r\n\ @param\ enemy\ is\ the\ enemy\ player\ fights\r\n\ @return\ true\ if\ successfully\ ran\ away,\ and\ false\ if\ didn't\r\n
 numComments=7

@@ -1,3 +1,8 @@
+/**
+ * Controls the player's inventory
+ * 
+ * @author Ivan Kosov
+ */
 public class InventoryController {
     private final Player player;
     private final Display display;
@@ -9,6 +14,9 @@ public class InventoryController {
         this.input = input;
     }
 
+    /**
+     * Opens the inventory
+     */
     public void accessInventory() {
         while (true) {
             display.drawMainInventory(player);
@@ -34,6 +42,9 @@ public class InventoryController {
         }
     }
 
+    /**
+     * Opens the consumables sub category of the inventory
+     */
     private void accessConsumables() {
         while (true) {
             display.drawConsumablesInventory(player.inventory.consumableItems);
@@ -47,6 +58,9 @@ public class InventoryController {
         }
     }
 
+    /**
+     * Opens the weapons sub category of the inventory
+     */
     private void accessWeapons() {
         display.drawWeaponsInventory(player.inventory.weaponItems);
         int answer = input.readNumber(0, 0);
@@ -55,6 +69,9 @@ public class InventoryController {
         }
     }
 
+    /**
+     * Opens the armor sub category of the inventory
+     */
     private void accessArmor() {
         display.drawArmorInventory(player.inventory.armorItems);
         int answer = input.readNumber(0, 0);
@@ -63,6 +80,9 @@ public class InventoryController {
         }
     }
 
+    /**
+     * Opens the other items sub category of the inventory
+     */
     private void accessOtherItems() {
         while (true) {
             display.drawOtherItemsInventory(player.inventory.otherItems);

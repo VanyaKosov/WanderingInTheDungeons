@@ -1,5 +1,10 @@
 import java.util.*;
 
+/**
+ * Stores all of the information about an enemy
+ * 
+ * @author Ivan Kosov
+ */
 public class Enemy {
     private final Random random = new Random();
     private final Dungeon dungeon;
@@ -14,6 +19,16 @@ public class Enemy {
     public final String name;
     public final String description;
 
+    /**
+     * 
+     * @param dungeon is an instance of the Dungeon class
+     * @param player is an instance of the Player class
+     * @param viewRadius is the radius in which it will sense the player and follow them
+     * @param pos is the starting position of the enemy
+     * @param stats is an instance of the Stats class
+     * @param name is the name of the enemy
+     * @param description is the description of the enemy
+     */
     public Enemy(Dungeon dungeon, Player player, int viewRadius, Pos pos, Stats stats, String name,
             String description) {
         this.dungeon = dungeon;
@@ -28,6 +43,10 @@ public class Enemy {
         accessibleCells = dungeon.findAccessibleCells(pos);
     }
 
+    /**
+     * When the player is not in reach, the enemy randomly chooses a cell and goes to it. 
+     * When the enemy senses the player nearby, it will follow them instead
+     */
     public void move() {
         if (turnsToSkip > 0) {
             turnsToSkip--;
@@ -56,19 +75,35 @@ public class Enemy {
         pos.col = futurePos.col;
     }
 
+    /**
+     * Skips a given amount of turns
+     * 
+     * @param amount is the amount of turns to skip
+     */
     public void skipTurns(int amount) {
         turnsToSkip += amount;
     }
 
+    /**
+     * Checks if the player is within reach
+     * 
+     * @return true if the player is nearby, and false if not
+     */
     private boolean isPlayerAround() {
         return Math.abs(pos.row - player.getPos().row) <= viewRadius
                 && Math.abs(pos.col - player.getPos().col) <= viewRadius;
     }
 
+    /**
+     * @return current position of the enemy
+     */
     public Pos getPos() {
         return new Pos(pos.row, pos.col);
     }
 
+    /**
+     * Stores the description of an attack, and all of the possible defenses
+     */
     public static class Attack {
         public final String description;
         public final Defense[] defenses;
@@ -79,6 +114,9 @@ public class Enemy {
         }
     }
 
+    /**
+     * Stores the description of the defense, the amount of damage received, and the description of the result of this defense
+     */
     public static class Defense {
         public final String description;
         public final int damage;

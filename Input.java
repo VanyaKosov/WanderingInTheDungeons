@@ -3,10 +3,9 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- * Write a description of class Input here.
+ * Gets all of the input
  *
  * @author Ivan Kosov
- * @version 0.0.1
  */
 public class Input implements Closeable {
     private static final Scanner wordScanner = new Scanner(System.in);
@@ -22,7 +21,10 @@ public class Input implements Closeable {
             put('i', Keys.INVENTORY);
         }
     };
-    
+
+    /**
+     * Waits until user presses enter
+     */
     public void waitForEnter() {
         while (true) {
             var answer = wordScanner.nextLine();
@@ -33,6 +35,11 @@ public class Input implements Closeable {
         }
     }
 
+    /**
+     * Reads all of the entered keys
+     * 
+     * @return an ArrayList of all of the entered keys
+     */
     public ArrayList<Keys> readKey() {
         var allKeys = new ArrayList<Keys>();
         var input = wordScanner.nextLine();
@@ -48,6 +55,13 @@ public class Input implements Closeable {
         return allKeys;
     }
 
+    /**
+     * Reads a number
+     * 
+     * @param min is the minimum number
+     * @param max is the maximum number
+     * @return the number that was entered
+     */
     public int readNumber(int min, int max) {
         while (true) {
             int number;
@@ -65,6 +79,9 @@ public class Input implements Closeable {
         }
     }
 
+    /**
+     * All of the possible keys
+     */
     public enum Keys {
         UP, DOWN, LEFT, RIGHT, MENU, SKIP, INVENTORY
     }

@@ -1,5 +1,5 @@
 /**
- * Candle allow the player to see further
+ * Candle allows the player to see further
  * 
  * @author Ivan Kosov
  */

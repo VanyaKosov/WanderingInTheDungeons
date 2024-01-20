@@ -1,8 +1,11 @@
 #BlueJ class context
 comment0.target=WanderingInTheDungeons
-comment0.text=\r\n\ The\ main\ class\ of\ the\ program.\r\n\r\n\ @author\ Ivan\ Kosov\r\n\ @version\ 0.0.1\r\n
+comment0.text=\r\n\ The\ main\ class\ of\ the\ program\r\n\r\n\ @author\ Ivan\ Kosov\r\n
 comment1.params=args
 comment1.target=void\ main(java.lang.String[])
 comment2.params=mapPath
 comment2.target=java.util.List\ readInputMap(java.nio.file.Path)
-numComments=3
+comment2.text=\r\n\ Reads\ dungeon\ map\ from\ a\ file\r\n\ \r\n\ @param\ mapPath\ is\ the\ path\ of\ the\ file\ with\ the\ map\r\n\ @return\ List\ of\ lines\ of\ the\ file\r\n\ @throws\ IOException\r\n
+comment3.params=
+comment3.target=void\ showTutorial()
+numComments=4

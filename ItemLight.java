@@ -1,3 +1,9 @@
+/**
+ * Inherits Item class.
+ * Inherited by all light items
+ * 
+ * @author Ivan Kosov
+ */
 public abstract class ItemLight extends Item {
     public final int viewRadiusIncrease;
     public final int fogOfWarRadiusIncrease;
@@ -9,6 +15,9 @@ public abstract class ItemLight extends Item {
         this.fogOfWarRadiusIncrease = fogOfWarRadiusIncrease;
     }
 
+    /**
+     * Increases player's view area
+     */
     @Override
     public void apply(Player player) {
         player.addViewRadius(viewRadiusIncrease);
