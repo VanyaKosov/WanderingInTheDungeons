@@ -1,13 +1,19 @@
 #BlueJ class context
 comment0.target=Enemy
+comment0.text=\r\n\ Stores\ all\ of\ the\ information\ about\ an\ enemy\r\n\ \r\n\ @author\ Ivan\ Kosov\r\n
 comment1.params=dungeon\ player\ viewRadius\ pos\ stats\ name\ description
 comment1.target=Enemy(Dungeon,\ Player,\ int,\ Pos,\ Stats,\ java.lang.String,\ java.lang.String)
+comment1.text=\r\n\ Initializes\ the\ fields\r\n\ \r\n\ @param\ dungeon\ is\ an\ instance\ of\ the\ Dungeon\ class\r\n\ @param\ player\ is\ an\ instance\ of\ the\ Player\ class\r\n\ @param\ viewRadius\ is\ the\ radius\ in\ which\ it\ will\ sense\ the\ player\ and\ follow\ them\r\n\ @param\ pos\ is\ the\ starting\ position\ of\ the\ enemy\r\n\ @param\ stats\ is\ an\ instance\ of\ the\ Stats\ class\r\n\ @param\ name\ is\ the\ name\ of\ the\ enemy\r\n\ @param\ description\ is\ the\ description\ of\ the\ enemy\r\n
 comment2.params=
 comment2.target=void\ move()
+comment2.text=\r\n\ When\ the\ player\ is\ not\ in\ reach,\ the\ enemy\ randomly\ chooses\ a\ cell\ and\ goes\ to\ it.\ \r\n\ When\ the\ enemy\ senses\ the\ player\ nearby,\ it\ will\ follow\ them\ instead\r\n
 comment3.params=amount
 comment3.target=void\ skipTurns(int)
+comment3.text=\r\n\ Skips\ a\ given\ amount\ of\ turns\r\n\ \r\n\ @param\ amount\ is\ the\ amount\ of\ turns\ to\ skip\r\n
 comment4.params=
 comment4.target=boolean\ isPlayerAround()
+comment4.text=\r\n\ Checks\ if\ the\ player\ is\ within\ reach\r\n\ \r\n\ @return\ true\ if\ the\ player\ is\ nearby,\ and\ false\ if\ not\r\n
 comment5.params=
 comment5.target=Pos\ getPos()
+comment5.text=\r\n\ @return\ current\ position\ of\ the\ enemy\r\n
 numComments=6

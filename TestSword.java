@@ -1,6 +1,8 @@
 /**
  * This is a test sword.
  * Increases player's strength by 15-25
+ * 
+ * @author Ivan Kosov
  */
 public class TestSword extends ItemWeapon {
     private static final String NAME = "Test Sword";

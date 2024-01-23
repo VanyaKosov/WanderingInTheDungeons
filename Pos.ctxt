@@ -1,17 +1,24 @@
 #BlueJ class context
 comment0.target=Pos
+comment0.text=\r\n\ Stores\ a\ position\ in\ two\ dimensions\r\n\ \r\n\ @author\ Ivan\ Kosov\r\n
 comment1.params=
 comment1.target=Pos()
+comment1.text=\r\n\ Default\ constructor\r\n
 comment2.params=row\ col
 comment2.target=Pos(int,\ int)
+comment2.text=\r\n\ Constructor\ that\ sets\ row\ and\ column\ values\r\n\ \r\n\ @param\ row\ is\ the\ row\ coordinate\r\n\ @param\ col\ is\ the\ column\ coordinate\r\n
 comment3.params=p
 comment3.target=Pos\ sub(Pos)
+comment3.text=\r\n\ Subtracts\ this\ Pos's\ row\ and\ col\ from\ another\ Pos's\ row\ and\ col\r\n\ \r\n\ @param\ p\ is\ another\ Pos\r\n\ @return\ new\ Pos\ that\ is\ the\ difference\ between\ the\ two\ pos\r\n
 comment4.params=p
 comment4.target=Pos\ add(Pos)
+comment4.text=\r\n\ Adds\ this\ Pos's\ row\ and\ col\ to\ another\ Pos's\ row\ and\ col\r\n\ \r\n\ @param\ p\ is\ another\ Pos\r\n\ @return\ new\ Pos\ that\ is\ the\ sum\ of\ the\ two\ pos\r\n
 comment5.params=p
 comment5.target=int\ manhattanDistance(Pos)
+comment5.text=\r\n\ Finds\ the\ manhattan\ distance\ between\ this\ Pos\ and\ another\ Pos\r\n\ @param\ p\ is\ another\ Pos\r\n\ @return\ the\ manhattan\ distance\r\n
 comment6.params=o
 comment6.target=boolean\ equals(java.lang.Object)
+comment6.text=\r\n\ Finds\ if\ this\ Pos\ and\ another\ Pos\ have\ equal\ row\ and\ col\r\n
 comment7.params=
 comment7.target=java.lang.String\ toString()
 numComments=8

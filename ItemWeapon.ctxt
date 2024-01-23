@@ -1,7 +1,9 @@
 #BlueJ class context
 comment0.target=ItemWeapon
+comment0.text=\r\n\ Inherits\ Item\ class.\r\n\ Inherited\ by\ all\ weapon\ items\r\n\ \r\n\ @author\ Ivan\ Kosov\r\n
 comment1.params=name\ description\ minDamage\ maxDamage
 comment1.target=ItemWeapon(java.lang.String,\ java.lang.String,\ int,\ int)
 comment2.params=
 comment2.target=int\ getDamage()
+comment2.text=\r\n\ @return\ a\ random\ damage\ between\ minimum\ and\ maximum\r\n
 numComments=3

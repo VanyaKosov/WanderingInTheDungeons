@@ -1,15 +1,22 @@
 #BlueJ class context
 comment0.target=InventoryController
+comment0.text=\r\n\ Controls\ the\ player's\ inventory\r\n\ \r\n\ @author\ Ivan\ Kosov\r\n
 comment1.params=player\ display\ input
 comment1.target=InventoryController(Player,\ Display,\ Input)
+comment1.text=\r\n\ Initializes\ the\ fields\r\n\ \r\n\ @param\ player\ is\ the\ instance\ of\ the\ Player\ class\r\n\ @param\ display\ is\ the\ instance\ of\ the\ Display\ class\r\n\ @param\ input\ is\ the\ instance\ of\ the\ Input\ class\r\n
 comment2.params=
 comment2.target=void\ accessInventory()
+comment2.text=\r\n\ Opens\ the\ inventory\r\n
 comment3.params=
 comment3.target=void\ accessConsumables()
+comment3.text=\r\n\ Opens\ the\ consumables\ sub\ category\ of\ the\ inventory\r\n
 comment4.params=
 comment4.target=void\ accessWeapons()
+comment4.text=\r\n\ Opens\ the\ weapons\ sub\ category\ of\ the\ inventory\r\n
 comment5.params=
 comment5.target=void\ accessArmor()
+comment5.text=\r\n\ Opens\ the\ armor\ sub\ category\ of\ the\ inventory\r\n
 comment6.params=
 comment6.target=void\ accessOtherItems()
+comment6.text=\r\n\ Opens\ the\ other\ items\ sub\ category\ of\ the\ inventory\r\n
 numComments=7

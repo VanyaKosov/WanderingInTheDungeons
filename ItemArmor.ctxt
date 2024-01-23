@@ -1,7 +1,9 @@
 #BlueJ class context
 comment0.target=ItemArmor
+comment0.text=\r\n\ Inherits\ Item\ class.\r\n\ Inherited\ by\ all\ armor\ items\r\n\ \r\n\ @author\ Ivan\ kosov\r\n
 comment1.params=name\ description\ armor
 comment1.target=ItemArmor(java.lang.String,\ java.lang.String,\ int)
 comment2.params=player
 comment2.target=void\ apply(Player)
+comment2.text=\r\n\ Increases\ player's\ armor\ stat\ by\ a\ certain\ amount\r\n
 numComments=3

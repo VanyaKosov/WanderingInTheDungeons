@@ -1,7 +1,10 @@
 #BlueJ class context
 comment0.target=Inventory
+comment0.text=\r\n\ Stores\ the\ inventory\r\n\ \r\n\ @author\ Ivan\ Kosov\r\n
 comment1.params=item\ amount\ player
 comment1.target=void\ removeItem(Item,\ int,\ Player)
+comment1.text=\r\n\ Removes\ a\ given\ amount\ of\ a\ certain\ item\ from\ the\ inventory\r\n\ \r\n\ @param\ item\ is\ the\ item\ you\ want\ to\ remove\r\n\ @param\ amount\ is\ the\ amount\ to\ remove\r\n\ @param\ player\ is\ an\ instance\ of\ the\ Player\ class\r\n
 comment2.params=item\ amount\ player
 comment2.target=void\ addItem(Item,\ int,\ Player)
+comment2.text=\r\n\ Adds\ a\ given\ amount\ of\ a\ certain\ item\ to\ the\ inventory\r\n\ \r\n\ @param\ item\ is\ the\ item\ you\ want\ to\ add\r\n\ @param\ amount\ is\ the\ amount\ to\ add\r\n\ @param\ player\ is\ an\ instance\ of\ the\ Player\ class\r\n
 numComments=3

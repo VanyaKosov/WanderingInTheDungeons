@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=SteelSword
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ SteelSword\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Increases\ player's\ strength\ by\ 7-12\r\n\r\n\ @author\ Ivan\ Kosov\r\n
 comment1.params=
 comment1.target=SteelSword()
 comment2.params=player

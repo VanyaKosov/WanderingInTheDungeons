@@ -35,6 +35,7 @@ public class Player {
         stuff.put(Cells.LEATHER_ARMOR, new LeatherArmor());
 
         inventory.addItem(stuff.get(Cells.CANDLE), 1, this);
+        inventory.addItem(new Stick(), 1, this);
         //inventory.addItem(stuff.get(Cells.TEST_SWORD), 1, this);
         inventory.addItem(stuff.get(Cells.HEALTH_POTION), 3, this);
     }

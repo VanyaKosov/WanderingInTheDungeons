@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=Stick
+comment0.text=\r\n\ This\ is\ a\ default\ weapon\ that\ player\ gets\ at\ the\ start\ of\ the\ game.\r\n\ Increases\ player\ strength\ by\ 1\r\n\ \r\n\ @author\ Ivan\ Kosov\r\n
+comment1.params=
+comment1.target=Stick()
+comment2.params=player
+comment2.target=void\ apply(Player)
+numComments=3

@@ -1,5 +1,6 @@
 #BlueJ class context
 comment0.target=ItemConsumable
+comment0.text=\r\n\ Inherits\ Item\ class.\r\n\ Inherited\ by\ all\ consumable\ items\r\n\ \r\n\ @author\ Ivan\ kosov\r\n
 comment1.params=name\ description
 comment1.target=ItemConsumable(java.lang.String,\ java.lang.String)
 numComments=2

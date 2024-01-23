@@ -1,5 +1,6 @@
 #BlueJ class context
 comment0.target=HealthPotion
+comment0.text=\r\n\ Health\ potion\ heals\ 20\ health\r\n\ \r\n\ @author\ Ivan\ Kosov\r\n
 comment1.params=
 comment1.target=HealthPotion()
 comment2.params=player

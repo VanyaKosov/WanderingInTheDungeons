@@ -1,5 +1,6 @@
 #BlueJ class context
 comment0.target=LeatherArmor
+comment0.text=\r\n\ Increases\ player's\ armor\ by\ 2\r\n\ \r\n\ @author\ Ivan\ Kosov\r\n
 comment1.params=
 comment1.target=LeatherArmor()
 numComments=2

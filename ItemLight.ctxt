@@ -1,7 +1,9 @@
 #BlueJ class context
 comment0.target=ItemLight
+comment0.text=\r\n\ Inherits\ Item\ class.\r\n\ Inherited\ by\ all\ light\ items\r\n\ \r\n\ @author\ Ivan\ Kosov\r\n
 comment1.params=name\ description\ viewRadiusIncrease\ fogOfWarRadiusIncrease
 comment1.target=ItemLight(java.lang.String,\ java.lang.String,\ int,\ int)
 comment2.params=player
 comment2.target=void\ apply(Player)
+comment2.text=\r\n\ Increases\ player's\ view\ area\r\n
 numComments=3
